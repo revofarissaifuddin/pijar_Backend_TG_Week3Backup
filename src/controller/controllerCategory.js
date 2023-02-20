@@ -7,7 +7,7 @@ const CategoryController = {
             let showCategory = await selectDataCategory();
             res.status(200).json({status:200,message:`data found`,data:showCategory.rows})
         } catch (error) {
-            res.status(400).json({status:400,message:`data user not found`})
+            res.status(404).json({status:400,message:`Error data not found`})
         }
     },
     // show data category by id
@@ -17,7 +17,7 @@ const CategoryController = {
             let showCategory = await getDataById('id', id);
             res.status(200).json({status:200,message:`data found`,data:showCategory.rows})
         } catch (error) {
-            res.status(400).json({status:400,message:`data user not found`})
+            res.status(404).json({status:400,message:`Error data not found`})
         }
     },
     //post data atau add data category
@@ -25,9 +25,9 @@ const CategoryController = {
         try {
             let data = { name } = req.body;
             await insertData(data);
-            res.status(200).json({status:200,message:`input data success`, data:`name :${name}`})
+            res.status(201).json({status:200,message:`input data success`, data:`name :${name}`})
         } catch (error) {
-            res.status(404).json({status:404,message:`input data failed`})
+            res.status(404).json({status:404,message:`Error data not found`})
         }
     },
     //update data category by id
@@ -38,7 +38,7 @@ const CategoryController = {
             await updateDataById(id, name)
             res.status(200).json({status:200,message:`update data success`,data:`name:${name}`})   
         } catch (error) {
-            res.status(404).json({status:404,message:`data input not found`})
+            res.status(404).json({status:404,message:`Error data not found`})
         }
     },
     //remove data category by id
@@ -48,7 +48,7 @@ const CategoryController = {
             let showData= await deleteDataById(id);
             res.status(200).json({status:200,message:`delete data success`,data:`id:${id} category deleted`})
         } catch (error) {
-            res.status(404).json({status:404,message:`delete data failed`})
+            res.status(404).json({status:404,message:`Error data not found`})
         }
     }
 }
