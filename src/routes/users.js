@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { getUsers, findUserByID,createUsers, updateUsers, removeDataById } = require("../controller/controllerUser");
+const { getUsers, findUserByID, createUsers, updateUsers, removeDataById } = require("../controller/controllerUser");
+// const { notFound, errorHandler } = require("../middleware/index");
 
 router.get("/", getUsers);
 router.post("/", createUsers);
-router.get("/:id", findUserByID);
+router.get("/:id",findUserByID);
 router.put("/:id", updateUsers);
 router.delete("/:id", removeDataById);
 

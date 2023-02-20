@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "59840be0-ddc2-4940-8a29-bdb7d4acd514",
+		"name": "pijar_BK_TG_Week3_Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25820268"
+	},
+	"item": [
+		{
+			"name": "TEST USER",
+			"item": [
+				{
+					"name": "TEST API GET ALL USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API GET BYID USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/users/19",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API ADD USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"revo \",\r\n    \"email\": \"rev@gmail.com\",\r\n    \"phone\": \"81111331333\",\r\n    \"password\": \"rev\",\r\n    \"retypepassword\": \"rev\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API UPDATE BYID USER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"revo faris saifuddin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/users/34",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API DELETE BYID  USER",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/users/21",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEST RECIPES",
+			"item": [
+				{
+					"name": "TEST API GET ALL RECIPES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API GET BYID RECIPES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/recipes/14",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"recipes",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API ADD RECIPES",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"sate\",\r\n    \"descriptions\": \"ayam cabai bawang\",\r\n    \"photo\": \"http://localhost\",\r\n    \"users_id\": 19\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API UPDATE BYID RECIPES",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descriptions\": \"ayam cabai\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/recipes/16",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"recipes",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API DELETE BYID RECIPES",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/recipes/9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"recipes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API SEARCH RECIPES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/recipes?search=sa&sort=asc&page=1&limit=3",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "sa"
+								},
+								{
+									"key": "sort",
+									"value": "asc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEST CATEGORY",
+			"item": [
+				{
+					"name": "TEST API GET ALL CATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/category",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API GET BYID CATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/category/7",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"category",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API ADD CATEGORY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"coffee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/category",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API UPDATE BYID CATEGORY",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"seafood\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/category/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API DELETE BYID CATEGORY",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/category/9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"category",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
