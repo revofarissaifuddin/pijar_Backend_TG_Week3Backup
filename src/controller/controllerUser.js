@@ -1,54 +1,70 @@
 const { selectDataUsers, selectDataById, insertData, updateDataById, deleteDataById } = require("../models/usersModel");
+
 const UsersController = {
     // show all data user
     getUsers: async (req, res, next) => {
         try { 
-            let showUsers = await selectDataUsers();
+        const showUsers = await selectDataUsers();
+            if (!showUsers) {
+                res.status(400).json({status:400,message:`Data user not found`})
+            }
             res.status(200).json({status:200,message:`data found`,data:showUsers.rows})
         } catch (error) {
-            res.status(404).json({status:400,message:`Error data user not found`})
+            next(error)
         }
     },
     // show data user by id
     findUserByID: async (req, res, next) => {
-        
         try {
-            let id = req.params.id;
-            let showUsers = await selectDataById("id", id);
-            res.status(200).json({ status: 200, message: `data found`, data: showUsers.rows })
+            const id = req.params.id;
+            const findUsers = await selectDataById("id", id);
+            if (!findUsers) {
+                res.status(400).json({ status: 404, message: `Error data user not found` })    
+            }
+            res.status(200).json({ status: 200, message: `data found`, data: findUsers.rows })
         } catch (error) {
-            res.status(404).json({ status: 404, message: `Error data user not found` })    
+            next(error)
         }
     },
     //post data atau add data users
     createUsers: async (req, res, next) => {
         try {
-            let data = { name, email, phone, password, retypepassword } = req.body;
-            let addData = await insertData(data);
-            res.status(201).json({status:200,message:`input data success`,data:data})    
+            const data = { name, email, phone, password, retypepassword } = req.body;
+            const addData = await insertData(data);
+            if (!addData) {
+                res.status(400).json({ status: 400, message: `Error input data failed`});
+            }
+            res.status(201).json({status:201,message:`input data success`,data:data})    
         } catch (error) {
-            res.status(404).json({ status: 404, message: `input data failed`});
+            next(error);
         }
     },
     //update data user
     updateUsers: async (req, res, next) => {
         try {
-            let id = req.params.id
-            let name = req.body.name
-            await updateDataById(id, name);
-            res.status(200).json({status:200,message:`update data success`,data:name})
+            const id = req.params.id
+            const name = req.body.name;
+            const updateData = await updateDataById(id, name);
+            if (!updateData) {
+                res.status(400).json({status:404,message:`Error request data user not found`})
+            }
+            const showUsers = await selectDataById("id", id);
+            res.status(201).json({status:201,message:`update data success`,data:showUsers.rows})
         } catch (error) {
-            res.status(404).json({status:404,message:`Error data user not found`})
+            next(error)
         }
     },
     //remove data user
     removeDataById: async (req, res, next) => {
-        try{
-            let id = req.params.id
-            let data = await deleteDataById(id);
+        try {
+            const id = req.params.id
+            const removeData = await deleteDataById(id);
+            if (!removeData) {
+                res.status(404).json({status:404,message:`Error request delete data failed`})
+            }
             res.status(200).json({status:200,message:`delete data success`,data:`id users: ${id} deleted`})
-        }catch(error){
-            res.status(404).json({status:404,message:`delete data failed`})
+        } catch (error) {
+            next(error)
         }
     }
 };

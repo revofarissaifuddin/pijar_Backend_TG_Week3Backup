@@ -1,11 +1,10 @@
 const pool = require('../config/db');
 
-const selectDataUsers =()=>{
-    return pool.query(`SELECT * FROM users ORDER BY id DESC`);
+const selectDataUsers = () => { 
+    return pool.query(`SELECT * FROM users ORDER BY id DESC`)
 }
-
 const selectDataById = (by, data) => {
-    return pool.query(`SELECT * FROM users WHERE ${by} = ${data}`);
+    return pool.query(`SELECT * FROM users WHERE ${by}='${data}'`);
 }
 
 const insertData = (data) => {
@@ -20,7 +19,28 @@ const updateDataById = (id, data) => {
 const deleteDataById = (id) => {
     return pool.query(`DELETE FROM users WHERE id=${id}`);
 }
-module.exports = { selectDataUsers, selectDataById, insertData, updateDataById, deleteDataById };
+
+const findUser = (email) => {
+    return new Promise((resolve, reject) =>
+        pool.query(`SELECT * FROM users WHERE email='${email}'`,
+            (err, result) => {
+                if (!err) {
+                resolve(result)
+                } else {
+                    reject(err)
+            }
+        })
+    );
+}
+
+module.exports = {
+    selectDataUsers,
+    selectDataById,
+    insertData,
+    updateDataById,
+    deleteDataById,
+    findUser,
+};
 
 /* ======================================Old Model CRUD User=========================================== */ 
 /* const getUsers = "SELECT * FROM users";

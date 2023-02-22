@@ -4,51 +4,66 @@ const CategoryController = {
     // show all data category
     getCategory: async(req,res,next)=>{
         try {
-            let showCategory = await selectDataCategory();
+            const showCategory = await selectDataCategory();
+            if (!showCategory) {
+                res.status(404).json({status:400,message:`Error request data not found`})
+            }
             res.status(200).json({status:200,message:`data found`,data:showCategory.rows})
         } catch (error) {
-            res.status(404).json({status:400,message:`Error data not found`})
+            next(error)
         }
     },
     // show data category by id
     getCategoryById: async (req, res, next) => {
         try {
-            let id = req.params.id
-            let showCategory = await getDataById('id', id);
-            res.status(200).json({status:200,message:`data found`,data:showCategory.rows})
+            const id = req.params.id
+            const findCategory = await getDataById('id', id);
+            if (!findCategory) {
+                res.status(404).json({status:400,message:`Error request data not found`})
+            }
+            res.status(200).json({status:200,message:`data found`,data:findCategory.rows})
         } catch (error) {
-            res.status(404).json({status:400,message:`Error data not found`})
+            next(error)
         }
     },
     //post data atau add data category
     inputCategory: async (req, res, next) => {
         try {
-            let data = { name } = req.body;
-            await insertData(data);
+            const data = { name } = req.body;
+            const addData = await insertData(data);
+            if (!addData) {
+                res.status(404).json({status:404,message:`Error request data not found`})
+            }
             res.status(201).json({status:200,message:`input data success`, data:`name :${name}`})
         } catch (error) {
-            res.status(404).json({status:404,message:`Error data not found`})
+            next(error)
         }
     },
     //update data category by id
     putCategoryById: async (req, res, next) => {
         try {
-            let id = req.params.id
-            let name = req.body.name
-            await updateDataById(id, name)
+            const id = req.params.id
+            const name = req.body.name
+            const updateData = await updateDataById(id, name)
+            if (!updateData) {
+                res.status(404).json({status:404,message:`Error request data not found`})
+            }
             res.status(200).json({status:200,message:`update data success`,data:`name:${name}`})   
         } catch (error) {
-            res.status(404).json({status:404,message:`Error data not found`})
+            next(error)
         }
     },
     //remove data category by id
     removeCategoryById: async (req, res, next) => {
         try {
-            let id = req.params.id
-            let showData= await deleteDataById(id);
+            const id = req.params.id
+            const removeData= await deleteDataById(id);
+            if (!removeData) {
+                res.status(404).json({status:404,message:`Error request data not found`})
+            }
             res.status(200).json({status:200,message:`delete data success`,data:`id:${id} category deleted`})
         } catch (error) {
-            res.status(404).json({status:404,message:`Error data not found`})
+            next(error)
         }
     }
 }

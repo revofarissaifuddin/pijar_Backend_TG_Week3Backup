@@ -4,14 +4,9 @@ function notFound(req, res, next) {
     next(error);
 }
 
-function errorHandler(error, req, res, next) {
-    if (error) {
-    console.error("Database connection error:", error);
-    res.status(500).json({ message: 'Internal server error' });
-    }
-}
+
 
 module.exports = {
     notFound,
-    errorHandler
+    
 }

@@ -4,15 +4,19 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "helmet": "^6.0.1",
     "json-server": "^0.17.1",
     "morgan": "^1.10.0",
-    "pg": "^8.9.0"
+    "pg": "^8.9.0",
+    "xss-clean": "^0.1.1"
   },
   "name": "pijar_backend_tg_week3",
   "description": "https://www.figma.com/file/SUbBTYCq1e4ngRt20lSdqr/Food-Recipe?node-id=0%3A1&t=vzOBw5mr1l9Ouinx-1\r Requirements:\r #### ○ Flowchart Aplikasi\r #### ○ Minimal 3 Table (recipe, category, users )\r #### ○ CRUD\r #### ○ Sort ->\r http://localhost:4000/recipe?sortby=created_at&sort=desc&page=1&limit=10\r #### ○ Search ->http://localhost:4000/recipe?search=nasi\r #### ○ Pagination (opsional)\r #### ○ Linter\r #### ○ Error Handling\r #### ○ Cors\r #### ○ ENV\r #### ○ Dokumentasi Postman\r #### ○ Helmet (optional)\r #### ○ XSS-Clean (optional)\r #### ○ Readme (optional)\r Optional yg bisa teman kerjakan kalau misalnya sudah selesai optional yg diatas\r Untuk Authentikasi\r - hash password ketika register dan pengecekan ketika login -> menggunakan bcryptjs\r (https://www.npmjs.com/package/bcryptjs)\r - dan menambahkan JWT (jsonwebtoken) ketika login\r (https://www.npmjs.com/package/jsonwebtoken)\r #### ○ Gunakan Bahasa Inggris untuk nama File dan Fungsi\r #### ○ Upload/push tugas kamu ke GitHub dan gunakan nama yang profesional\r #### ○ Dapat didemokan menggunakan postman\r #### ○ Presentasikan apa yang telah Anda lakukan dalam minggu ini\r #### ○ Jelaskan dengan bahasa kalian sendiri apa itu dan konsep tentang:\r ■ Node JS\r ■ Express\r ■ postgreSQL\r ■ REST API\r #### ○ Ceritakan dan Demokan tentang proyek ini",
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-plugin-react": "^7.32.2",
     "nodemon": "^2.0.20"
   },
   "scripts": {
