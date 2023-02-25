@@ -1,13 +1,16 @@
 {
   "dependencies": {
+    "argon2": "^0.30.3",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.1",
-    "json-server": "^0.17.1",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.1",
     "pg": "^8.9.0",
+    "uuid": "^9.0.0",
     "xss-clean": "^0.1.1"
   },
   "name": "pijar_backend_tg_week3",

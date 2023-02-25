@@ -1,40 +1,56 @@
-const { selectDataRecipes, getDataById, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
+const { selectDataRecipes,getData, getDataById, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
 
 const RecipesController = {
     // show all data recipes
     getRecipes: async (req, res, next) => {
-        try {
-            const showRecipes = await selectDataRecipes();
-            if (!showRecipes) {
-                res.status(404).json({status:400,message:`Error request data not found`})
-            }
-            res.status(200).json({status:200,message:`data found`,data:showRecipes.rows})
-        } catch (error) {
-            next(error)
+        let {searchBy,search,sortBy,sort} = req.query
+        let data = {
+            searchBy: searchBy || 'title',
+            search: search || '',
+            sortBy: sortBy || 'created_at',
+            sort: sort || 'ASC'
         }
+
+        let result = await getData(data)
+        if(!result){
+            res.status(404).json({status:404,message:`get data failed`})
+        }
+
+        res.status(200).json({status:200,message:`get data success `,data:result.rows})
     },
     // show data recipes by id
     getRecipesById: async (req, res, next) => {
-        try {
-            const id = req.params.id
-            const findRecipes = await getDataById("id",id);
-            if (!findRecipes) {
-                res.status(404).json({status:400,message:`Error request data not found`})
-            }
-            res.status(200).json({status:200,message:`data found`,data:findRecipes.rows})
-        } catch (error) {
-            next(error)
+        let {searchBy,search,sortBy,sort} = req.query
+        let data = {
+            searchBy: searchBy || 'title',
+            search: search || '',
+            sortBy: sortBy || 'created_at',
+            sort: sort || 'ASC',
+            id: req.payload.id
         }
+
+        let result = await getDataById(data)
+
+        if(!result){
+            res.status(404).json({status:404,message:`get data failed`})
+        }
+
+        res.status(200).json({status:200,message:`get data success `,data:result.rows})
     },
     //post data atau add data recipes
-    inputRecipes: async (req,res,next)=>{
+    inputRecipes: async (req, res, next) => {
         try {
-            const data = { title, photo, descriptions, users_id } = req.body;
-            const addRecipes = await insertData(data);
-            if (!addRecipes) {
-                res.status(404).json({status:404,message:`Error request data not found`})
+            const data = {};
+            data.title = req.body.title;
+            data.photo = req.body.photo;
+            data.users_id = req.payload.id;
+            data.descriptions = req.body.descriptions;
+    
+            const result = await insertData(data);
+            if (!result) {
+                return res.status(404).json({ status: 404, message: `Error input data recipes failed` })
             }
-            res.status(201).json({status: 200, message: `input data success`, data:data})
+            return res.status(201).json({ status: 200, message: `input data success`, data:data})
         } catch (error) {
             next(error)
         }

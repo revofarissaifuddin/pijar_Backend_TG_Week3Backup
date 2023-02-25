@@ -1,4 +1,4 @@
-const { selectDataUsers, selectDataById, insertData, updateDataById, deleteDataById } = require("../models/usersModel");
+const { selectDataUsers, selectUserById, insertData, updateDataById, deleteDataById } = require("../models/usersModel");
 
 const UsersController = {
     // show all data user
@@ -17,12 +17,13 @@ const UsersController = {
     findUserByID: async (req, res, next) => {
         try {
             const id = req.params.id;
-            const findUsers = await selectDataById("id", id);
+            const findUsers = await selectUserById("id", id);
             if (!findUsers) {
-                res.status(400).json({ status: 404, message: `Error data user not found` })    
+                return res.status(400).json({ status: 404, message: `Error data user not found`})    
+            } else {
+                res.status(200).json({ status: 200, message: `data found`, data: findUsers.rows })
             }
-            res.status(200).json({ status: 200, message: `data found`, data: findUsers.rows })
-        } catch (error) {
+        } catch (error) {  
             next(error)
         }
     },
@@ -36,7 +37,7 @@ const UsersController = {
             }
             res.status(201).json({status:201,message:`input data success`,data:data})    
         } catch (error) {
-            next(error);
+            next(error)
         }
     },
     //update data user
@@ -48,7 +49,7 @@ const UsersController = {
             if (!updateData) {
                 res.status(400).json({status:404,message:`Error request data user not found`})
             }
-            const showUsers = await selectDataById("id", id);
+            const showUsers = await selectUserById("id", id);
             res.status(201).json({status:201,message:`update data success`,data:showUsers.rows})
         } catch (error) {
             next(error)
@@ -58,7 +59,7 @@ const UsersController = {
     removeDataById: async (req, res, next) => {
         try {
             const id = req.params.id
-            const removeData = await deleteDataById(id);
+            const removeData = await delete deleteDataById(id);
             if (!removeData) {
                 res.status(404).json({status:404,message:`Error request delete data failed`})
             }

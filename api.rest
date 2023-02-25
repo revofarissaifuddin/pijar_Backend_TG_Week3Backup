@@ -1,0 +1,81 @@
+@url=http://localhost:3000
+###
+GET {{url}}/users
+
+###
+POST  {{url}}/users
+content-type: application/json
+
+{
+    "name": ""
+}
+###
+PUT  {{url}}/users/2
+content-type: application/json
+
+{
+    "name": ""
+}
+
+###
+DELETE {{url}}/users/5
+###
+POST  {{url}}/recipes
+content-type: application/json
+
+{
+    "title":"telur gulung",
+    "descriptions": "telur",
+    "photo": "http://localhost",
+    "users_id":4
+}
+######################## login regris jwt#############################
+###
+
+GET http://localhost:3000/users
+
+###
+POST  {{url}}/auth/register
+content-type: application/json
+
+{
+    "email":"sqv41504@omeie.com",
+    "name":"omeie",
+    "password":"123"
+}
+
+###
+POST  {{url}}/auth/login
+content-type: application/json
+
+{
+    "email":"revofaris@yahoo.id",
+    "password":"123"
+}
+
+###
+GET  {{url}}/recipes
+Authorization: 12312312313
+
+###
+GET  {{url}}/recipes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4Y2Q3ZjVjLWIxNTYtNDI4Yi04ODU2LWI5MWQ1NjdmYjI4YSIsImVtYWlsIjoicmV2b2ZhcmlzQHlhaG9vLmlkIiwiZnVsbG5hbWUiOiJyZXZvZmFyaXMiLCJwaG90byI6bnVsbCwidmVyaWYiOjAsIm90cCI6bnVsbCwiY3JlYXRlX2F0IjpudWxsLCJpYXQiOjE2NzcyNTE0MTgsImV4cCI6MTY3ODU2NTQxOH0.YDVv9oyQoKqBJekgpY5vfq13yQQrOGD51l-nYleYk0M
+
+
+###
+GET  {{url}}/recipes/my-recipe
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4Y2Q3ZjVjLWIxNTYtNDI4Yi04ODU2LWI5MWQ1NjdmYjI4YSIsImVtYWlsIjoicmV2b2ZhcmlzQHlhaG9vLmlkIiwiZnVsbG5hbWUiOiJyZXZvZmFyaXMiLCJwaG90byI6bnVsbCwidmVyaWYiOjAsIm90cCI6bnVsbCwiY3JlYXRlX2F0IjpudWxsLCJpYXQiOjE2NzcyNDk3NDMsImV4cCI6MTY3ODU2Mzc0M30.UjB3y9M3jeIE7J8FCS1HkveENEcxbDoR9DuUhC7kN7s
+
+###
+POST  {{url}}/recipes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4Y2Q3ZjVjLWIxNTYtNDI4Yi04ODU2LWI5MWQ1NjdmYjI4YSIsImVtYWlsIjoicmV2b2ZhcmlzQHlhaG9vLmlkIiwiZnVsbG5hbWUiOiJyZXZvZmFyaXMiLCJwaG90byI6bnVsbCwidmVyaWYiOjAsIm90cCI6bnVsbCwiY3JlYXRlX2F0IjpudWxsLCJpYXQiOjE2NzcyNTE0MTgsImV4cCI6MTY3ODU2NTQxOH0.YDVv9oyQoKqBJekgpY5vfq13yQQrOGD51l-nYleYk0M
+content-type: application/json
+
+{
+    "title":"telur asin",
+    "descriptions": "telur dan garam",
+    "photo": "http://localhost"
+}
+
+###
+GET http://localhost:3000/auth/otp/589e435c-a645-48c4-a302-f06d203e2ab9/981453
