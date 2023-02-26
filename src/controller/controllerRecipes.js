@@ -1,5 +1,5 @@
 const { selectDataRecipes,getData, getDataById, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
-
+const cloudinary = require("../config/photo")
 const RecipesController = {
     // show all data recipes
     getRecipes: async (req, res, next) => {
@@ -40,11 +40,19 @@ const RecipesController = {
     //post data atau add data recipes
     inputRecipes: async (req, res, next) => {
         try {
+            const imageUrl = await cloudinary.uploader.upload(req.file.path, { folder: "food" });
+            console.log('imageUrl', imageUrl)
+            
+            if (!imageUrl) {
+                res.status(404).json({status:404,message:`input data failed, failed to upload photo`})
+            }
+
             const data = {};
             data.title = req.body.title;
-            data.photo = req.body.photo;
+            data.photo = imageUrl.secure_url
             data.users_id = req.payload.id;
             data.descriptions = req.body.descriptions;
+            data.category_id = req.body.category_id;
     
             const result = await insertData(data);
             if (!result) {

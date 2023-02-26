@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { getRecipes,getRecipesById,inputRecipes,putRecipesById,removeRecipesById,getSearchRecipes } = require("../controller/controllerRecipes");
 const {protect} = require("../middleware/auth")
+const upload = require("../middleware/uploadPhoto");
 
-router.get("/",protect, getRecipes);
-router.post("/",protect, inputRecipes);
+router.post("/", protect, upload.single("photo"), inputRecipes);
+router.get("/",protect,getRecipes);
 router.get("/my-recipe", protect, getRecipesById);
 // router.get("/", getSearchRecipes);
 // router.put("/:id", putRecipesById);

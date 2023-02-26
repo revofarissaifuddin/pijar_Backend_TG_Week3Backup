@@ -32,7 +32,8 @@ app.use(xss());
 
 //parse application/json
 app.use("/", mainRouter);
-// catch 404 and forward to error handler
+app.use("/img", express.static("./tmp"));
+/* // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
@@ -48,5 +49,5 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
-});
+}); */
 app.listen(port, () => console.log(`App listening on port:${port}`));

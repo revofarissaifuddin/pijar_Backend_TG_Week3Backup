@@ -1,3 +1,4 @@
+-- Active: 1677139201868@@localhost@5432
 /* -- create table users in databases pijar_backend_tg_week3 */
 /* CREATE TABLE users(id SERIAL PRIMARY KEY, 
     name VARCHAR NOT NULL, 
@@ -18,7 +19,8 @@ CREATE TABLE recipes(
     title VARCHAR NOT NULL,
     descriptions TEXT NOT NULL,
     photo VARCHAR,
-    created_at TIMESTAMP NOT NULL
+    created_at TIMESTAMP NOT NULL,
+
     );
 
 INSERT INTO recipes(title,descriptions,photo,created_at,category_id) VALUES('ayam bakar','ayam kecap manis','http://localhost','2023-02-14 22:08:04',1);
@@ -31,7 +33,7 @@ SELECT recipes.title, recipes.descriptions, recipes.photo, recipes.users_id, rec
 /* -- create table users in databases pijar_backend_tg_week3 */
 CREATE TABLE category(id SERIAL, name VARCHAR);
 ALTER TABLE category ADD PRIMARY KEY (id);
-INSERT INTO category(name) VALUES('pedas asin');
+INSERT INTO category(name) VALUES('snack');
 SELECT*FROM category ORDER BY id DESC;
 
 -- hapus data tabel
@@ -40,6 +42,7 @@ DROP TABLE recipes;
 
 
 /* ================================NEW QUERY DATA===================================== */
+/* add users table */
 CREATE TABLE users(
     id VARCHAR PRIMARY KEY,
     email VARCHAR NOT NULL,
@@ -51,13 +54,27 @@ CREATE TABLE users(
     create_at TIMESTAMP
 );
 
-SELECT * FROM recipes;
+/* add recipes table */
+CREATE TABLE recipes(
+    id SERIAL,
+    title VARCHAR NOT NULL,
+    descriptions TEXT NOT NULL,
+    photo VARCHAR,
+    created_at TIMESTAMP NOT NULL,
+    category_id  INT
+
+    );
+/* add category table */
+CREATE TABLE category(id SERIAL, name VARCHAR);
+ALTER TABLE category ADD PRIMARY KEY (id);
+
+SELECT * FROM category;
 
 INSERT INTO users(id,email,password,fullname)VALUES('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed','revo@revo.id','123','revofaris');
 
-ALTER TABLE recipes add users_id VARCHAR;
+ALTER TABLE recipes add slug VARCHAR;
 
-ALTER TABLE recipes add Foreign Key (category_id) REFERENCES category(id);
+ALTER TABLE recipes ADD Foreign Key (category_id) REFERENCES category(id);
 
 ALTER TABLE recipes add deleted_at TIMESTAMP DEFAULT NULL;
 
