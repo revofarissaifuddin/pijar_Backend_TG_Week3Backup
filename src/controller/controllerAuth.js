@@ -52,6 +52,7 @@ const UsersController = {
             return res.status(404).json({ status: 404, message: `register failed` })
         }
     },
+    
     // function login user
     loginUser: async (req, res, next) => {
         

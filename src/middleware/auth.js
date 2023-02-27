@@ -14,16 +14,16 @@ const protect = (req,res,next) => {
             // console.log(decode)
             next()
         } else{
-            return res.status(404). json({status:404,message:`login gagal, server butuh token`})       
+            return res.status(404). json({status:404,message:`login failed, server need token`})       
         }
     }catch(error){
         console.log('error',error)
         if(error && error.name == 'JsonWebTokenError'){
-            return res.status(404). json({status:404,message:`login gagal, invalid token`})       
+            return res.status(404). json({status:404,message:`login failed, invalid token`})       
         } else if(error && error.name == 'TokenExpiredError'){
-            return res.status(404). json({status:404,message:`login gagal, token kadaluarsa`})       
+            return res.status(404). json({status:404,message:`login failed, token expired`})       
         } else{
-            return res.status(404). json({status:404,message:`login gagal, token tidak aktif, silahkan login`})       
+            return res.status(404). json({status:404,message:`login failed, pelase login`})       
         }
     }
 }

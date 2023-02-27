@@ -6,6 +6,7 @@ GET {{url}}/users
 POST  {{url}}/users
 content-type: application/json
 
+
 {
     "name": ""
 }
@@ -39,7 +40,7 @@ POST  {{url}}/auth/register
 content-type: application/json
 
 {
-    "email":"nly44474@nezid.com",
+    "email":"jmn54796@nezid.com",
     "name":"nezid",
     "password":"123"
 }
@@ -59,16 +60,15 @@ Authorization: 12312312313
 
 ###
 GET  {{url}}/recipes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMGIxODQzLWFhOWUtNDc3MC1iMGE3LWE3MTA1ZWUxYjRhNiIsImVtYWlsIjoiYXFrMjM1MTBAenNsc3ouY29tIiwiZnVsbG5hbWUiOiJ6c2xzeiIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiMjUzMTY4IiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNVQyMjoyNzoxOC4wMzVaIiwiaWF0IjoxNjc3Mzg5MzI4LCJleHAiOjE2Nzg3MDMzMjh9.eRSoq1pPRDZd8fejUQObHpOYdHy9zsLjxe3I1xRLel4
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAwOGE1NmQyLWZlNWMtNDFlZi1hYmIwLWY5MmMxYzQ5OWQyMiIsImVtYWlsIjoidXJ1MTE4MDZAbmV6aWQuY29tIiwiZnVsbG5hbWUiOiJuZXppZCIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiNjQ3MjIxIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNlQwMTo1Nzo1OC44NDZaIiwiaWF0IjoxNjc3NDAyNzMwLCJleHAiOjE2Nzg3MTY3MzB9.ladotrWrrwEvGQeQd94VQzjPnuPL8vqAGUR4h-ppnBw
 
 ###
 GET  {{url}}/recipes/my-recipe
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMGIxODQzLWFhOWUtNDc3MC1iMGE3LWE3MTA1ZWUxYjRhNiIsImVtYWlsIjoiYXFrMjM1MTBAenNsc3ouY29tIiwiZnVsbG5hbWUiOiJ6c2xzeiIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiMjUzMTY4IiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNVQyMjoyNzoxOC4wMzVaIiwiaWF0IjoxNjc3Mzg5MzI4LCJleHAiOjE2Nzg3MDMzMjh9.eRSoq1pPRDZd8fejUQObHpOYdHy9zsLjxe3I1xRLel4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljNzEyYmQzLTMzOWQtNDcwNi1hY2I2LTI4NzY5ZjdmNTRhMSIsImVtYWlsIjoicHNkNzM0ODhAenNsc3ouY29tIiwiZnVsbG5hbWUiOiJ6c2xzeiIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiMzE3ODYyIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNVQwMzo1NjoyMS41NDlaIiwiaWF0IjoxNjc3Mzg0NDg2LCJleHAiOjE2Nzg2OTg0ODZ9.4EkjBy1ZqMRPDzXsL98_mqpgpdc-zw6XxuSuJ1VGvBU
 
 ###
 POST  {{url}}/recipes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4Y2Q3ZjVjLWIxNTYtNDI4Yi04ODU2LWI5MWQ1NjdmYjI4YSIsImVtYWlsIjoicmV2b2ZhcmlzQHlhaG9vLmlkIiwiZnVsbG5hbWUiOiJyZXZvZmFyaXMiLCJwaG90byI6bnVsbCwidmVyaWYiOjAsIm90cCI6bnVsbCwiY3JlYXRlX2F0IjpudWxsLCJpYXQiOjE2NzcyNTE0MTgsImV4cCI6MTY3ODU2NTQxOH0.YDVv9oyQoKqBJekgpY5vfq13yQQrOGD51l-nYleYk0M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMGIxODQzLWFhOWUtNDc3MC1iMGE3LWE3MTA1ZWUxYjRhNiIsImVtYWlsIjoiYXFrMjM1MTBAenNsc3ouY29tIiwiZnVsbG5hbWUiOiJ6c2xzeiIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiMjUzMTY4IiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNVQyMjoyNzoxOC4wMzVaIiwiaWF0IjoxNjc3Mzk5NjkxLCJleHAiOjE2Nzg3MTM2OTF9.2aK3jdNvv5UqU6Frs0VqaJYrF93482_v_6U6qHUeNZw
 content-type: application/json
 
 {
@@ -80,3 +80,8 @@ content-type: application/json
 
 ###
 GET https://res.cloudinary.com/drlwo9tu8/image/upload/v1677384157/food/w3zwvx6qess74pfew2tm.png
+
+###
+DELETE   {{url}}/recipes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAwOGE1NmQyLWZlNWMtNDFlZi1hYmIwLWY5MmMxYzQ5OWQyMiIsImVtYWlsIjoidXJ1MTE4MDZAbmV6aWQuY29tIiwiZnVsbG5hbWUiOiJuZXppZCIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiNjQ3MjIxIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNlQwMTo1Nzo1OC44NDZaIiwiaWF0IjoxNjc3NDAyNzMwLCJleHAiOjE2Nzg3MTY3MzB9.ladotrWrrwEvGQeQd94VQzjPnuPL8vqAGUR4h-ppnBw
+

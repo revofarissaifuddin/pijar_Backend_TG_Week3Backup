@@ -19,12 +19,16 @@ const insertData = (data) => {
   );
 }
 
-const updateDataById = (id, data) => {
-  return pool.query(`UPDATE recipes SET descriptions='${data}' WHERE id=${id}`);
-};
+const updateDataById = (id,data) => {
+  let { descriptions, title, photo, users_id, category_id} = data;
+  return pool.query(
+    `UPDATE recipes SET descriptions='${descriptions}', title='${title}', photo='${photo}', category_id=${category_id}, users_id='${users_id}' WHERE id='${id}';`
+  );
+}
 
 const deleteDataById = (id) => {
-  return pool.query(`DELETE FROM recipes WHERE id=${id}`);
+  let time = new Date().toISOString();
+  return pool.query(`UPDATE recipes SET deleted_at='${time}' WHERE id='${id}'`);
 };
 
 const searchDataRecipes = (data) => {
@@ -41,6 +45,18 @@ const getData = (data) => {
   );
 }
 
+const findUser = (email) => {
+  return new Promise((resolve, reject) =>
+    pool.query(`SELECT * FROM users WHERE id='${email}'`, (err, result) => {
+      if (!err) {
+        resolve(result);
+      } else {
+        reject(err);
+      }
+    })
+  );
+};
+
 module.exports = {
   selectDataRecipes,
   getDataById,
@@ -48,5 +64,6 @@ module.exports = {
   updateDataById,
   deleteDataById,
   searchDataRecipes,
-  getData
+  getData,
+  findUser
 };

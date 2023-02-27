@@ -1,4 +1,4 @@
--- Active: 1677139201868@@localhost@5432
+-- Active: 1677139201868@@localhost@5432@pijar_backend_tg_week3backup@public
 /* -- create table users in databases pijar_backend_tg_week3 */
 /* CREATE TABLE users(id SERIAL PRIMARY KEY, 
     name VARCHAR NOT NULL, 
@@ -11,7 +11,7 @@
 -- ALTER TABLE users MODIFY name VARCHAR NOT NULL; modif not null
 INSERT INTO users(name,email,phone,password,retypepassword) VALUES('revofs','revofs@gmail.com',081111111333,'revo','revo');
 DELETE FROM users WHERE id='1';
-SELECT * FROM users ORDER BY id DESC;
+SELECT * FROM recipes ORDER BY id DESC;
 
 /* -- create table recipe in databases pijar_backend_tg_week3 */
 CREATE TABLE recipes(
@@ -43,6 +43,7 @@ DROP TABLE recipes;
 
 /* ================================NEW QUERY DATA===================================== */
 /* add users table */
+
 CREATE TABLE users(
     id VARCHAR PRIMARY KEY,
     email VARCHAR NOT NULL,
@@ -68,11 +69,11 @@ CREATE TABLE recipes(
 CREATE TABLE category(id SERIAL, name VARCHAR);
 ALTER TABLE category ADD PRIMARY KEY (id);
 
-SELECT * FROM category;
+SELECT * FROM recipes;
 
 INSERT INTO users(id,email,password,fullname)VALUES('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed','revo@revo.id','123','revofaris');
 
-ALTER TABLE recipes add slug VARCHAR;
+ALTER TABLE recipes add deleted_at VARCHAR;
 
 ALTER TABLE recipes ADD Foreign Key (category_id) REFERENCES category(id);
 

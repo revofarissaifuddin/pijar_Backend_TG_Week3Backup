@@ -8,7 +8,8 @@ router.post("/", protect, upload.single("photo"), inputRecipes);
 router.get("/",protect,getRecipes);
 router.get("/my-recipe", protect, getRecipesById);
 // router.get("/", getSearchRecipes);
+router.put("/my-recipe/:id", protect, upload.single("photo"), putRecipesById);
 // router.put("/:id", putRecipesById);
-// router.delete("/:id", removeRecipesById);
+router.delete("/:id", protect, removeRecipesById);
 
 module.exports = router;
