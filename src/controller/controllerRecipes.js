@@ -1,49 +1,47 @@
-const { selectDataRecipes, getData, getDataById, insertData, updateDataById, deleteDataById, searchDataRecipes, findUser } = require("../models/recipesModel");
+const { selectDataRecipes, getRecipesById, getRecipesByIdUsers, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
 const cloudinary = require("../config/photo")
 const path = require("path")
 const RecipesController = {
     // show all data recipes
     getRecipes: async (req, res, next) => {
-        let {searchBy,search,sortBy,sort} = req.query
-        let data = {
-            searchBy: searchBy || 'title',
-            search: search || '',
-            sortBy: sortBy || 'created_at',
-            sort: sort || 'ASC'
+        try {
+            let {searchBy,search,sortBy,sort} = req.query
+            let data = {
+                searchBy: searchBy || 'title',
+                search: search || '',
+                sortBy: sortBy || 'created_at',
+                sort: sort || 'ASC'
+            }
+    
+            let result = await selectDataRecipes(data);
+            if(!result){
+                res.status(404).json({status:404,message:`get data failed`})
+            }
+            res.status(200).json({status:200,message:`get data success `,data:result.rows})
+        } catch (error) {
+            res.status(404).json({status:404,message:`Error request get all data failed`})
+            next(error)
         }
-
-        let result = await selectDataRecipes(data);
-        if(!result){
-            res.status(404).json({status:404,message:`get data failed`})
-        }
-
-        res.status(200).json({status:200,message:`get data success `,data:result.rows})
     },
     // show data recipes by id
     getRecipesById: async (req, res, next) => {
-        let {searchBy,search,sortBy,sort} = req.query
-        let data = {
-            searchBy: searchBy || 'title',
-            search: search || '',
-            sortBy: sortBy || 'created_at',
-            sort: sort || 'ASC',
-            id: req.payload.id
+        try {
+            let data = req.payload.id
+            let result = await getRecipesByIdUsers(data);
+            if(!result){
+                res.status(404).json({status:404,message:`get data failed`})
+            }
+            res.status(200).json({status:200,message:`get data success `,data:result.rows})    
+        } catch (error) {
+            res.status(404).json({status:404,message:`Error request get data failed`})
+            next(error)
         }
-        
-        let result = await getDataById(data)
-
-        if(!result){
-            res.status(404).json({status:404,message:`get data failed`})
-        }
-
-        res.status(200).json({status:200,message:`get data success `,data:result.rows})
     },
     //post data atau add data recipes
     inputRecipes: async (req, res, next) => {
         try {
             const imageUrl = await cloudinary.uploader.upload(req.file.path, { folder: "food" });
-            console.log('imageUrl', imageUrl)
-            
+            // console.log('imageUrl', imageUrl)
             if (!imageUrl) {
                 res.status(404).json({status:404,message:`input data failed, failed to upload photo`})
             }
@@ -61,17 +59,20 @@ const RecipesController = {
             }
             return res.status(201).json({ status: 200, message: `input data success`, data:data})
         } catch (error) {
+            res.status(404).json({ status: 404, message: `Error input data recipes failed` })
             next(error)
         }
     },
     //update data user
     putRecipesById: async (req, res, next) => {
         try {
+            const recipes = await getRecipesById(req.params.id);
+            const recipesRows = recipes.rows[0]
+            // console.log(`test console log =${recipesRows}`)
             const imageUrl = await cloudinary.uploader.upload(req.file.path, { folder: "food" });
-            console.log('imageUrl', imageUrl)
-            
+            // console.log('imageUrl', imageUrl)
             if (!imageUrl) {
-                res.status(404).json({status:404,message:`input data failed, failed to upload photo`})
+                res.status(404).json({ status: 404, message: `input data failed, failed to upload photo` });
             }
             
             let id = req.params.id
@@ -82,13 +83,20 @@ const RecipesController = {
             data.users_id = req.payload.id;
             data.category_id = req.body.category_id;
 
+            if (req.payload.id !== recipesRows.users_id) {
+                res.status(404).json({status:404,message:`Error recipes not yours`})
+            } else if (id!==null || id!==recipesRows.id) {
+                res.status(404).json({status:404,message:`Error recipes not yours`})
+            }
+
             const updateRecipes = await updateDataById(id, data);
-            console.log(updateRecipes);
+            // console.log(updateRecipes);
             if (!updateRecipes) {
                 res.status(404).json({status:404,message:`Error request data not found`})
             }
             res.status(200).json({status:200,message:`update data success`})   
         } catch (error) {
+            res.status(404).json({status:404,message:`Error request id data not found`})
             next(error)
         }
     },
@@ -96,13 +104,20 @@ const RecipesController = {
     //remove data recipes
     removeRecipesById: async (req, res, next) => {
         try {
+            const recipes = await getRecipesById(req.params.id);
+            const recipesRows = recipes.rows[0];
+            
+            if (req.payload.id !== recipesRows.users_id) {
+                return res.status(404).json({status:404,message:`Error recipes not yours`})
+            }
+
             const id = req.params.id
             const removeData = await deleteDataById(id);
-            if (!removeData) {
-                res.status(404).json({status:404,message:`Error request data not found`})
+            if (!removeData.rows[0]) {
+                return res.status(200).json({status:200,message:`delete data success`,data:`deleted`})
             }
-            res.status(200).json({status:200,message:`delete data success`,data:`deleted`})
         } catch (error) {
+            res.status(404).json({status:404,message:`Error request data not found`})
             next(error)
         }
     },

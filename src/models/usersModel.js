@@ -16,9 +16,9 @@ const selectUserById = (data) => {
     );
 }
 const getDataById = (data) => {
-    let { searchBy, search, sortBy, sort, id } = data;
+    let { id } = data;
     return pool.query(
-        `SELECT users.email,users.password,users.fullname, users.photo FROM users WHERE users.${searchBy} ILIKE '%${search}%' AND users.id='${id}' ORDER BY users.${sortBy} ${sort}`
+      `SELECT * FROM users WHERE id = '${id}'`
     );
 };
 const insertData = (data) => {
@@ -27,7 +27,7 @@ const insertData = (data) => {
 }
 
 const updateDataById = (id, data) => {
-    return pool.query(`UPDATE users SET name='${data}' WHERE id=${id}`);
+    return pool.query(`UPDATE users SET fullname='${data}' WHERE id='${id}'`);
 }
 
 const deleteDataById = (id) => {

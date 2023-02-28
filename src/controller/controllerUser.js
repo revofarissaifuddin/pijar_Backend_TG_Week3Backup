@@ -16,12 +16,7 @@ const UsersController = {
     // show data user by id
     findUserByID: async (req, res, next) => {
         try {
-            let {searchBy,search,sortBy,sort} = req.query
             let data = {
-                searchBy: searchBy || 'title',
-                search: search || '',
-                sortBy: sortBy || 'created_at',
-                sort: sort || 'ASC',
                 id: req.payload.id
             }
 
@@ -51,14 +46,14 @@ const UsersController = {
     //update data user
     updateUsers: async (req, res, next) => {
         try {
-            const id = req.params.id
+            const id = req.payload.id;
             const name = req.body.name;
             const updateData = await updateDataById(id, name);
             if (!updateData) {
-                res.status(400).json({status:404,message:`Error request data user not found`})
+                return res.status(400).json({status:404,message:`Error request data user not found`})
             }
             const showUsers = await selectUserById("id", id);
-            res.status(201).json({status:201,message:`update data success`,data:showUsers.rows})
+            res.status(201).json({status:201,message:`update data success`})
         } catch (error) {
             next(error)
         }
@@ -79,6 +74,7 @@ const UsersController = {
 };
 
 module.exports = UsersController;
+
 /* ===========================Old code User Controller============================== */
 /* const pool = require('../config/db');
 const queries = require("../models/usersModel");
