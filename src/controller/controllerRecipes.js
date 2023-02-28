@@ -29,7 +29,7 @@ const RecipesController = {
             sort: sort || 'ASC',
             id: req.payload.id
         }
-
+        
         let result = await getDataById(data)
 
         if(!result){
