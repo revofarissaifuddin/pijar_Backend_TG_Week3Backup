@@ -1,4 +1,4 @@
-const { selectDataUsers, selectUserById, insertData, updateDataById, deleteDataById } = require("../models/usersModel");
+const { getDataById, selectDataUsers, selectUserById, insertData, updateDataById, deleteDataById } = require("../models/usersModel");
 
 const UsersController = {
     // show all data user
@@ -16,12 +16,20 @@ const UsersController = {
     // show data user by id
     findUserByID: async (req, res, next) => {
         try {
-            const id = req.params.id;
-            const findUsers = await selectUserById("id", id);
-            if (!findUsers) {
+            let {searchBy,search,sortBy,sort} = req.query
+            let data = {
+                searchBy: searchBy || 'title',
+                search: search || '',
+                sortBy: sortBy || 'created_at',
+                sort: sort || 'ASC',
+                id: req.payload.id
+            }
+
+        let result = await getDataById(data)
+            if (!result) {
                 return res.status(400).json({ status: 404, message: `Error data user not found`})    
             } else {
-                res.status(200).json({ status: 200, message: `data found`, data: findUsers.rows })
+                res.status(200).json({ status: 200, message: `data found`, data: result.rows })
             }
         } catch (error) {  
             next(error)

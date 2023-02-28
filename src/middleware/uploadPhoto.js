@@ -17,12 +17,13 @@ const storage = multer.diskStorage({
         const extension = FILE_TYPE_MAP;
         const uniq = Date.now() + Math.round(Math.random() * 1E9)
         // cb(null, uniq +".png");
+        
         cb(null,uniq+ extension);
     }
 })
 
 const upload = multer({
-    storage: storage,
+    storage,
     limits: { fileSize: 10 * Math.pow(1024, 4) },
 });
 

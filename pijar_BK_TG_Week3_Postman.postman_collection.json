@@ -15,11 +15,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/users",
+							"raw": "localhost:3000/users",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -29,18 +29,37 @@
 				},
 				{
 					"name": "TEST API GET BYID USER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "id",
+								"value": "9c712bd3-339d-4706-acb6-28769f7f54a1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"9c712bd3-339d-4706-acb6-28769f7f54a1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:4000/users/19",
+							"raw": "localhost:3000/users/",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"users",
-								"19"
+								""
 							]
 						}
 					},
@@ -53,7 +72,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"revo \",\r\n    \"email\": \"rev@gmail.com\",\r\n    \"phone\": \"81111331333\",\r\n    \"password\": \"rev\",\r\n    \"retypepassword\": \"rev\"\r\n}",
+							"raw": "{\r\n    \"name\": \"revo faris saifuddin \",\r\n    \"email\": \"rev@gmail.com\",\r\n    \"phone\": \"81111331333\",\r\n    \"password\": \"rev\",\r\n    \"retypepassword\": \"rev\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -61,11 +80,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/users",
+							"raw": "localhost:3000/users",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"users"
 							]
@@ -80,7 +99,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"revo faris saifuddin\"\r\n}",
+							"raw": "{\r\n    \"name\": \"faris saifuddin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,14 +107,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/users/34",
+							"raw": "localhost:3000/users/40",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"users",
-								"34"
+								"40"
 							]
 						}
 					},
@@ -107,14 +126,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/users/21",
+							"raw": "localhost:3000/users/45",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"users",
-								"21"
+								"45"
 							]
 						}
 					},
@@ -128,14 +147,24 @@
 				{
 					"name": "TEST API GET ALL RECIPES",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljNzEyYmQzLTMzOWQtNDcwNi1hY2I2LTI4NzY5ZjdmNTRhMSIsImVtYWlsIjoicHNkNzM0ODhAenNsc3ouY29tIiwiZnVsbG5hbWUiOiJ6c2xzeiIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiMzE3ODYyIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNVQwMzo1NjoyMS41NDlaIiwiaWF0IjoxNjc3Mzg0NDg2LCJleHAiOjE2Nzg2OTg0ODZ9.4EkjBy1ZqMRPDzXsL98_mqpgpdc-zw6XxuSuJ1VGvBU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/recipes",
+							"raw": "localhost:3000/recipes",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"recipes"
 							]
@@ -149,11 +178,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/recipes/14",
+							"raw": "localhost:3000/recipes/14",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"recipes",
 								"14"
@@ -169,7 +198,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"sate\",\r\n    \"descriptions\": \"ayam cabai bawang\",\r\n    \"photo\": \"http://localhost\",\r\n    \"users_id\": 19\r\n}",
+							"raw": "{\r\n    \"title\": \"sate ayam\",\r\n    \"descriptions\": \"ayam cabai bawang\",\r\n    \"photo\": \"http://localhost\",\r\n    \"users_id\": 19\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,11 +206,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/recipes",
+							"raw": "localhost:3000/recipes",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"recipes"
 							]
@@ -196,7 +225,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descriptions\": \"ayam cabai\"\r\n}",
+							"raw": "{\r\n    \"descriptions\": \"ayam\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -204,11 +233,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/recipes/16",
+							"raw": "localhost:3000/recipes/16",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"recipes",
 								"16"
@@ -223,11 +252,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/recipes/9",
+							"raw": "localhost:3000/recipes/9",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"recipes",
 								"9"
@@ -242,18 +271,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/recipes?search=sa&sort=asc&page=1&limit=3",
+							"raw": "localhost:3000/recipes?search=sate&sort=asc&page=1&limit=3",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"recipes"
 							],
 							"query": [
 								{
 									"key": "search",
-									"value": "sa"
+									"value": "sate"
 								},
 								{
 									"key": "sort",
@@ -283,11 +312,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/category",
+							"raw": "localhost:3000/category",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"category"
 							]
@@ -301,11 +330,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/category/7",
+							"raw": "http://localhost:3000/category/7",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"category",
 								"7"
@@ -329,11 +359,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/category",
+							"raw": "localhost:3000/category",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"category"
 							]
@@ -356,11 +386,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000/category/1",
+							"raw": "localhost:3000/category/1",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"category",
 								"1"
@@ -375,14 +405,341 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:4000/category/9",
+							"raw": "localhost:3000/category/11",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "3000",
 							"path": [
 								"category",
-								"9"
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEST Login/Regris/Users",
+			"item": [
+				{
+					"name": "TEST API LOGIN USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"uru11806@nezid.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"uru11806@nezid.com\",\r\n    \"name\":\"nezid\",\r\n    \"password\":\"123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API GET ALL USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API GET BYID USER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "id",
+								"value": "9c712bd3-339d-4706-acb6-28769f7f54a1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"9c712bd3-339d-4706-acb6-28769f7f54a1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEST RECIPES LOGIN",
+			"item": [
+				{
+					"name": "TEST API GET ALL RECIPES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljNzEyYmQzLTMzOWQtNDcwNi1hY2I2LTI4NzY5ZjdmNTRhMSIsImVtYWlsIjoicHNkNzM0ODhAenNsc3ouY29tIiwiZnVsbG5hbWUiOiJ6c2xzeiIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiMzE3ODYyIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNVQwMzo1NjoyMS41NDlaIiwiaWF0IjoxNjc3Mzg0NDg2LCJleHAiOjE2Nzg2OTg0ODZ9.4EkjBy1ZqMRPDzXsL98_mqpgpdc-zw6XxuSuJ1VGvBU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API GET BYID RECIPES Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAwOGE1NmQyLWZlNWMtNDFlZi1hYmIwLWY5MmMxYzQ5OWQyMiIsImVtYWlsIjoidXJ1MTE4MDZAbmV6aWQuY29tIiwiZnVsbG5hbWUiOiJuZXppZCIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiNjQ3MjIxIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNlQwMTo1Nzo1OC44NDZaIiwiaWF0IjoxNjc3NDAyNzMwLCJleHAiOjE2Nzg3MTY3MzB9.ladotrWrrwEvGQeQd94VQzjPnuPL8vqAGUR4h-ppnBw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:3000/recipes/my-recipe",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recipes",
+								"my-recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API ADD RECIPES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAwOGE1NmQyLWZlNWMtNDFlZi1hYmIwLWY5MmMxYzQ5OWQyMiIsImVtYWlsIjoidXJ1MTE4MDZAbmV6aWQuY29tIiwiZnVsbG5hbWUiOiJuZXppZCIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiNjQ3MjIxIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNlQwMTo1Nzo1OC44NDZaIiwiaWF0IjoxNjc3NDAxOTE1LCJleHAiOjE2Nzg3MTU5MTV9.6k5VUEj4XX6ELAtJbnQPyIrBR9PTMR04t79BARwi14o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "title",
+								"value": "telur rebus",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "descriptions",
+								"value": "telur dan air dan garam",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "photo",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "category_id",
+								"value": "2",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "telur rebus",
+									"type": "text"
+								},
+								{
+									"key": "descriptions",
+									"value": "telur dan air dan garam",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Asus/Downloads/telur_rebus.png"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API UPDATE RECIPES",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descriptions\": \"ayam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/recipes/16",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recipes",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST API DELETE BYID RECIPES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAwOGE1NmQyLWZlNWMtNDFlZi1hYmIwLWY5MmMxYzQ5OWQyMiIsImVtYWlsIjoidXJ1MTE4MDZAbmV6aWQuY29tIiwiZnVsbG5hbWUiOiJuZXppZCIsInBob3RvIjpudWxsLCJ2ZXJpZiI6MSwib3RwIjoiNjQ3MjIxIiwiY3JlYXRlX2F0IjoiMjAyMy0wMi0yNlQwMTo1Nzo1OC44NDZaIiwiaWF0IjoxNjc3NDAyNzMwLCJleHAiOjE2Nzg3MTY3MzB9.ladotrWrrwEvGQeQd94VQzjPnuPL8vqAGUR4h-ppnBw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:3000/recipes/56",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recipes",
+								"56"
 							]
 						}
 					},

@@ -3,9 +3,9 @@ const pool = require('../config/db');
 const selectDataUsers = () => { 
     return pool.query(`SELECT * FROM users ORDER BY id DESC`)
 }
-const selectUserById = (id) => {
+const selectUserById = (data) => {
     return new Promise((resolve, reject) =>
-        pool.query(`SELECT * FROM users WHERE id='${id}'`,
+        pool.query(`SELECT * FROM users WHERE id='${data}'`,
             (err, result) => {
                 if (!err) {
                 resolve(result)
@@ -15,7 +15,12 @@ const selectUserById = (id) => {
         })
     );
 }
-
+const getDataById = (data) => {
+    let { searchBy, search, sortBy, sort, id } = data;
+    return pool.query(
+        `SELECT users.email,users.password,users.fullname, users.photo FROM users WHERE users.${searchBy} ILIKE '%${search}%' AND users.id='${id}' ORDER BY users.${sortBy} ${sort}`
+    );
+};
 const insertData = (data) => {
     let { name, email, phone, password, retypepassword } = data;
     return pool.query(`INSERT INTO users (name, email, phone, password, retypepassword) VALUES ('${name}', '${email}', '${phone}', '${password}', '${retypepassword}')`);
@@ -68,7 +73,8 @@ module.exports = {
     deleteDataById,
     findUser,
     createUser,
-    verifyUser
+    verifyUser,
+    getDataById
 };
 
 /* ======================================Old Model CRUD User=========================================== */ 

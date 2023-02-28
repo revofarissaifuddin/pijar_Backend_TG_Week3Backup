@@ -1,4 +1,4 @@
-const { getData, getDataById, insertData, updateDataById, deleteDataById, searchDataRecipes, findUser } = require("../models/recipesModel");
+const { selectDataRecipes, getData, getDataById, insertData, updateDataById, deleteDataById, searchDataRecipes, findUser } = require("../models/recipesModel");
 const cloudinary = require("../config/photo")
 const path = require("path")
 const RecipesController = {
@@ -12,7 +12,7 @@ const RecipesController = {
             sort: sort || 'ASC'
         }
 
-        let result = await getData(data)
+        let result = await selectDataRecipes(data);
         if(!result){
             res.status(404).json({status:404,message:`get data failed`})
         }
