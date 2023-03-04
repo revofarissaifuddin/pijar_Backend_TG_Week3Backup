@@ -1,7 +1,7 @@
 const { findUser, createUser, selectUserById, verifyUser} = require("../models/usersModel");
 const {v4:uuidv4} = require("uuid");
 const argon2 = require("argon2");
-const generateToken =require("../helpers/generateToken")
+const { generateToken , refreshGenerateToken} = require("../helpers/generateToken");
 const email = require("../middleware/email");
 
 const UsersController = {
@@ -68,19 +68,24 @@ const UsersController = {
             return res.status(404).json({ status: 404, message: `login failed, password of email false` })
         }
 
+        
         let verifyPassword = await argon2.verify(users.password, req.body.password)
-
+        //https://www.geeksforgeeks.org/jwt-authentication-with-refresh-tokens/
         let data = users
         delete data.password
         let token = generateToken(users)
-        
+        let refreshToken = refreshGenerateToken(users)
         if (verifyPassword) {
             users.token = token
+            users.refreshToken = refreshToken
             delete users.password
             delete users.otp
             delete users.verif
             delete users.created_at
-            return res.status(200).json({ status: 200, message: `login sucsess`, data: users })
+            return res.status(200)/* .cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                sameSite: 'None', secure: true,
+            }) */.json({status: 200, message: `login sucsess`, data: users })
         }
 
         return res.status(404).json({ status: 404, message: `login failed` });

@@ -1,17 +1,15 @@
 const pool = require("../config/db");
 
-const selectDataRecipes = () => {
-  return pool.query(`SELECT * FROM recipes WHERE recipes.deleted_at IS NULL ORDER BY id DESC`);
-};
-
-const getRecipesById = (data) => {
+const getDataRecipes = () => {
   return pool.query(
-    `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
+    `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL ORDER BY created_at DESC`
   );
 };
 
 const getRecipesByIdUsers = (data) => {
-  return pool.query(`SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND users_id='${data}' ORDER BY id DESC`);
+  return pool.query(
+    `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NULL AND users_id='${data}' ORDER BY id DESC`
+  );
 };
 
 const insertData = (data) => {
@@ -29,22 +27,28 @@ const updateDataById = (id,data) => {
   );
 }
 
+const getRecipesById = (data) => {
+  return pool.query(
+    `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
+  );
+};
+
 const deleteDataById = (id) => {
   let time = new Date().toISOString();
   return pool.query(`UPDATE recipes SET deleted_at='${time}' WHERE id='${id}'`);
 };
 
+
 const searchDataRecipes = (data) => {
-  let { searchBy, search, sortBy, sort, limit } = data;
+  let { searchBy, search, sortBy, sort, limit, page } = data;
   return pool.query(
-    `SELECT recipes.title, recipes.descriptions, recipes.photo, recipes.users_id, recipes.created_at FROM recipes WHERE recipes.${searchBy} LIKE '${search}%' ORDER BY recipes.${sortBy} ${sort} LIMIT ${limit}`
+    `SELECT recipes.title,recipes.descriptions,recipes.created_at as posttime, recipes.deleted_at, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id WHERE recipes.deleted_at IS NULL AND recipes.${searchBy} ILIKE '${search}%' ORDER BY recipes.${sortBy} ${sort} LIMIT ${limit} OFFSET ${page} ROWS `
   );
 };
 
-const getData = (data) => {
-  let { searchBy, search, sortBy, sort } = data;
+const getData = () => {
   return pool.query(
-    `SELECT recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.${searchBy} ILIKE '%${search}%' AND recipes.deleted_at IS NULL ORDER BY recipes.${sortBy} ${sort}`
+    `SELECT recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NULL`
   );
 }
 
@@ -61,7 +65,7 @@ const findUser = (email) => {
 };
 
 module.exports = {
-  selectDataRecipes,
+  getDataRecipes,
   getRecipesById,
   insertData,
   updateDataById,
