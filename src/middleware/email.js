@@ -16,15 +16,15 @@ module.exports = (emailClient, subject, url, name) => {
         to: emailClient,
         subject: `${subject} is your OTP`,
         text: `Hello ${name}, ${subject} is your otp, please input in form ${url}`
-    }
-    transporter.sendMail(mailOption, function (error, data) {
+    };
+    transporter.sendMail(mailOption, function (error, data) {// eslint-disable-line no-unused-vars
         if (error) {
-            console.log("error:",error)
+            console.log("error:",error);
             console.log("Email not send");
         } else {
             console.log("email send");
-            return 'Email success'
+            return "Email success";
         }
-    })
+    });
 };
 

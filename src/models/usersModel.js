@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require("../config/db");
 
 const createUser = (data) => {
     const { email, fullname, password, id, otp } = data;
@@ -6,41 +6,41 @@ const createUser = (data) => {
     return new Promise((resolve, reject) =>
         pool.query(`INSERT INTO users(id,email,fullname,password,otp,create_at) VALUES('${id}','${email}','${fullname}','${password}','${otp}','${create_at}')`, (err, result) => {
             if (!err) {
-                resolve(result)
+                resolve(result);
             } else {
-                reject(err)
+                reject(err);
             }
         }));
-}
+};
     
 const selectDataUsers = () => { 
-    return pool.query(`SELECT * FROM users ORDER BY id DESC`)
-}
+    return pool.query("SELECT * FROM users ORDER BY id DESC");
+};
 
 const selectUserById = (data) => {
     return new Promise((resolve, reject) =>
         pool.query(`SELECT * FROM users WHERE id='${data}'`,
             (err, result) => {
                 if (!err) {
-                resolve(result)
+                    resolve(result);
                 } else {
-                    reject(err)
-            }
-        })
+                    reject(err);
+                }
+            })
     );
-}
+};
 
 const getDataById = (data) => {
     let { id } = data;
     return pool.query(
-      `SELECT * FROM users WHERE id = '${id}'`
+        `SELECT * FROM users WHERE id = '${id}'`
     );
 };
 
 const insertData = (data) => {
     let { name, email, phone, password, retypepassword } = data;
     return pool.query(`INSERT INTO users (name, email, phone, password, retypepassword) VALUES ('${name}', '${email}', '${phone}', '${password}', '${retypepassword}')`);
-}
+};
 
 const updateDataById = (id, data) => {
     let { fullname, email} = data;
@@ -51,24 +51,24 @@ const updateDataById = (id, data) => {
 
 const deleteDataById = (id, data) => {
     return pool.query(`DELETE FROM users SET fullname='${data}' WHERE id='${id}'`);
-}
+};
 
 const findUser = (email) => {
     return new Promise((resolve, reject) =>
         pool.query(`SELECT * FROM users WHERE email='${email}'`,
             (err, result) => {
                 if (!err) {
-                resolve(result)
+                    resolve(result);
                 } else {
-                    reject(err)
-            }
-        })
+                    reject(err);
+                }
+            })
     );
-}
+};
 
 const verifyUser = (id) => {
     return pool.query(`UPDATE users SET verif=1 WHERE id='${id}'`);
-}
+};
 
 module.exports = {
     selectDataUsers,

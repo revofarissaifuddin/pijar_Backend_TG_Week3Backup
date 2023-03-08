@@ -20,13 +20,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",
     "nodemon": "^2.0.20"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "repository": {
     "type": "git",
