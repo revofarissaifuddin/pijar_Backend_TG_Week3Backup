@@ -1,59 +1,69 @@
-# Soal Backend Week3
 
-## Buatlah API dari aplikasi dibawah ini
-Requirements:
-#### ○ Flowchart Aplikasi
-#### ○ Minimal 3 Table (recipe, category, users )
-#### ○ CRUD
-#### ○ Sort ->
-http://localhost:4000/recipe?sortby=created_at&sort=desc&page=1&limit=10
-#### ○ Search ->http://localhost:4000/recipe?search=nasi
-#### ○ Pagination (opsional)
-#### ○ Linter
-#### ○ Error Handling
-#### ○ Cors
-#### ○ ENV
-#### ○ Dokumentasi Postman
-#### ○ Helmet (optional)
-#### ○ XSS-Clean (optional)
-#### ○ Readme (optional)
-Optional yg bisa teman kerjakan kalau misalnya sudah selesai optional yg diatas
-Untuk Authentikasi
-- hash password ketika register dan pengecekan ketika login -> menggunakan bcryptjs
-(https://www.npmjs.com/package/bcryptjs)
-- dan menambahkan JWT (jsonwebtoken) ketika login
-(https://www.npmjs.com/package/jsonwebtoken)
-#### ○ Gunakan Bahasa Inggris untuk nama File dan Fungsi
-#### ○ Upload/push tugas kamu ke GitHub dan gunakan nama yang profesional
-#### ○ Dapat didemokan menggunakan postman
-#### ○ Presentasikan apa yang telah Anda lakukan dalam minggu ini
-#### ○ Jelaskan dengan bahasa kalian sendiri apa itu dan konsep tentang:
-■ Node JS
-■ Express
-■ postgreSQL
-■ REST API
-#### ○ Ceritakan dan Demokan tentang proyek ini
+# Rest Api Foot Recipes
 
-# Buatlah API dari aplikasi dibawah ini
-#### OBw5mr1l9Ouinx-1
-#### Requirements:
-#### ○ Semua requirement dari Week 3
-#### ○ Login & Register
-#### ○ JWT
-#### ○ Validasi Role User
-#### ○ Hash Password
-#### ○ Unggah Gambar (validation “png, jpg”, file size)
-#### ○ File Validation (jpg, png)
-#### ○ Redis (optional)
-#### ○ Linter
-#### ○ Refresh Token (optional)
-#### ○ User Activation via email (optional)
-#### ○ Gunakan Bahasa Inggris untuk nama File dan Fungsi
-#### ○ Upload/push tugas kamu ke GitHub dan gunakan nama yang profesional
-#### ○ Dapat didemokan menggunakan postman
-#### ○ Jelaskan dengan bahasa kalian sendiri apa itu dan konsep tentang:
-#### ■ Otentikasi dan Otorisasi
-#### ■ JWT
-#### ■ Redis
-#### ■ Multer
-#### ○ Ceritakan dan Demokan tentang proyek ini
+Create API with
+
+## Built
+
+Built Rest API with:
+
+```bash
+  Node JS
+  Express JS
+  PostgreSQL
+  Cyclic
+```
+
+## Packages
+
+Built Packages NodeJS: 
+
+#### ○ "argon2": "^0.30.3",
+#### ○ "body-parser": "^1.20.1",
+#### ○ "cloudinary": "^1.34.0",
+#### ○ "cors": "^2.8.5",
+#### ○ "dotenv": "^16.0.3",
+#### ○ "express": "^4.18.2",
+#### ○ "helmet": "^6.0.1",
+#### ○ "jsonwebtoken": "^9.0.0",
+#### ○ "morgan": "^1.10.0",
+#### ○ "multer": "^1.4.5-lts.1",
+#### ○ "nodemailer": "^6.9.1",
+#### ○ "pg": "^8.9.0",
+#### ○ "uuid": "^9.0.0",
+#### ○ "xss-clean": "^0.1.1"
+
+## ENV file
+
+Built Rest API with:
+
+```bash
+  DB_USER = 
+  DB_NAME =  
+  DB_PASSWORD = 
+  DB_PORT =  
+  DB_HOST = 
+
+  JWT_KEY=
+  JWT_REFRESH_TOKEN=
+
+  EMAIL_NAME=
+  EMAIL_PASSWORD=
+
+  BASE_URL=
+  PORT=
+
+  PHOTO_NAME=
+  PHOTO_KEY=
+  PHOTO_SECRET=  
+```
+## Deployment
+
+To deploy this project with cyclic
+
+```bash
+  https://fair-lime-salamander-boot.cyclic.app(plus root api)
+```
+## Authors
+
+- [@revfs](https://github.com/revofarissaifuddin/)
