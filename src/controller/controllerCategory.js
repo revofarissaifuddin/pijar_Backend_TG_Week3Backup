@@ -19,7 +19,7 @@ const CategoryController = {
             const data = req.params.id;
             
             const findCategory = await getDataById("id",data);
-            if (!findCategory) {
+            if (!findCategory.rows[0]) {
                 res.status(404).json({status:400,message:"Error request data not found"});
             }
             res.status(200).json({status:200,message:"data found",data:findCategory.rows});
