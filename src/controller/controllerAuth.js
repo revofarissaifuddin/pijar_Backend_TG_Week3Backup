@@ -82,10 +82,7 @@ const UsersController = {
             delete users.otp;
             delete users.verif;
             delete users.created_at;
-            return res.status(200)/* .cookie('refreshToken', refreshToken, {
-                httpOnly: true,
-                sameSite: 'None', secure: true,
-            }) */.json({status: 200, message: "login sucsess", data: users });
+            return res.status(200).json({status: 200, message: "login sucsess", data: users });
         }
 
         return res.status(404).json({ status: 404, message: "login failed" });
