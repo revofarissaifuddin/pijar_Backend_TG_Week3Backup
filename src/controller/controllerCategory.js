@@ -20,7 +20,7 @@ const CategoryController = {
             const categoryRows = category.rows[0];
             const data = req.params.id;
             
-            if (req.params.id !== categoryRows.data) {
+            if (req.params.id !== categoryRows.id) {
                 res.status(404).json({status:404,message:"Error id not found"});
             } 
             
