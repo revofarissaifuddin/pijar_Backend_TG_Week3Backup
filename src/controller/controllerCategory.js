@@ -18,11 +18,12 @@ const CategoryController = {
         try {
             const category = await getDataById(req.params.id);
             const categoryRows = category.rows[0];
+            const data = req.params.id;
             
-            if (req.params.id !== categoryRows.cekId) {
+            if (req.params.id !== categoryRows.data) {
                 res.status(404).json({status:404,message:"Error id not found"});
             } 
-            const data = req.params.id;
+            
             const findCategory = await getDataById("id",data);
             if (!findCategory) {
                 res.status(404).json({status:400,message:"Error request data not found"});
