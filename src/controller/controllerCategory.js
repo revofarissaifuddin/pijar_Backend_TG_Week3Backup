@@ -16,13 +16,18 @@ const CategoryController = {
     // show data category by id
     getCategoryById: async (req, res, next) => {
         try {
-            const data = req.params.id;
-            
+            const id = req.params.id;
+            const cekId = await getDataById(id);
+            const veryId = cekId.rows[0];
+            if (!veryId) {
+                res.status(404).json({status:404,message:"Error id data not found"}); 
+            }
+            /* const data = req.params.id;
             const findCategory = await getDataById("id",data);
             if (!findCategory.rows[0]) {
                 res.status(404).json({status:400,message:"Error request data not found"});
-            }
-            res.status(200).json({status:200,message:"data found",data:findCategory.rows});
+            } */
+            res.status(200).json({status:200,message:"data found",data:cekId.rows});
         } catch (error) {
             next(error);
         }
@@ -64,7 +69,7 @@ const CategoryController = {
             if (!veryId) {
                 res.status(404).json({status:404,message:"Error id data not found"}); 
             }
-            
+
             const removeData= await deleteDataById(id);
             if (!removeData) {
                 res.status(404).json({status:404,message:"Error request data not found"});
