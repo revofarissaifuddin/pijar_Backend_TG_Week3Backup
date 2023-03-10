@@ -16,8 +16,12 @@ const CategoryController = {
     // show data category by id
     getCategoryById: async (req, res, next) => {
         try {
-            /* const data = req.payload.id;
-             const result = await getRecipesByIdUsers(data); */
+            const category = await getDataById(req.params.id);
+            const categoryRows = category.rows[0];
+            
+            if (req.params.id !== categoryRows.cekId) {
+                res.status(404).json({status:404,message:"Error id not found"});
+            } 
             const data = req.params.id;
             const findCategory = await getDataById("id",data);
             if (!findCategory) {
