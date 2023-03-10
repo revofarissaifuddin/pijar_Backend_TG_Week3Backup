@@ -86,7 +86,7 @@ const RecipesController = {
             }
             res.status(200).json({status:200,message:"update data success"});   
         } catch (error) {
-            res.status(404).json({status:404,message:"Error request update, data update recipes not yours"});
+            res.status(404).json({status:404,message:"Error request id data not found"});
             next(error);
         }
     },
