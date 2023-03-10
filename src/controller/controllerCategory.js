@@ -59,6 +59,12 @@ const CategoryController = {
     removeCategoryById: async (req, res, next) => {
         try {
             const id = req.params.id;
+            const cekId = await getDataById(id);
+            const veryId = cekId.rows[0];
+            if (!veryId) {
+                res.status(404).json({status:404,message:"Error id data not found"}); 
+            }
+            
             const removeData= await deleteDataById(id);
             if (!removeData) {
                 res.status(404).json({status:404,message:"Error request data not found"});
