@@ -10,7 +10,6 @@ router.get("/public", getRecipes);
 router.get("/my-recipe", protect, getRecipesById);
 router.get("/all-recipe", protect, getSearchRecipes);
 router.put("/my-recipe/:id", protect, upload.single("photo"), putRecipesById);
-// router.put("/:id", putRecipesById);
 router.delete("/:id", protect, removeRecipesById);
 
 module.exports = router;
