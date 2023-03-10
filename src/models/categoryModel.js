@@ -4,8 +4,8 @@ const selectDataCategory = () => {
     return pool.query("SELECT * FROM category ORDER BY id DESC");
 };
 
-const getDataById = (by, data) => {
-    return pool.query(`SELECT * FROM category WHERE ${by}=${data}`);
+const getDataById = (data) => {
+    return pool.query(`SELECT * FROM category WHERE id=${data}`);
 };
 
 const insertData = (data) => {
