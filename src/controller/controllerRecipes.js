@@ -1,4 +1,4 @@
-const { getDataRecipes,getRecipesById, getRecipesByIdUsers, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
+const { getDataRecipes,getRecipesById, getRecipesByIdUsers,getRecipesDeletedByIdUsers, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
 const cloudinary = require("../config/photo");
 const path = require("path");// eslint-disable-line no-unused-vars
 const RecipesController = {
@@ -22,9 +22,24 @@ const RecipesController = {
             const data = req.payload.id;
             const result = await getRecipesByIdUsers(data);
             if (!result) {
-                res.status(404).json({status:404,message:"get data failed"});
+                res.status(404).json({ status: 404, message: "get data failed" });
             }
-            res.status(200).json({status:200,message:"get data success ",data:result.rows});    
+            res.status(200).json({ status: 200, message: "get data success ", data: result.rows });
+        } catch (error) {
+            res.status(404).json({status:404,message:"Error request get data not found"});
+            next(error);
+        }
+    },
+    // show data delete recipes by id
+    getDeletedRecipesById: async (req, res, next) => {
+        try {
+            const data = req.payload.id;
+            const deletedResult = await getRecipesDeletedByIdUsers(data);
+            if (!deletedResult) {
+                res.status(404).json({ status: 404, message: "get data failed" });
+            }
+            res.status(200).json({ status: 200, message: "get data success ", data: deletedResult.rows });
+            
         } catch (error) {
             res.status(404).json({status:404,message:"Error request get data not found"});
             next(error);
