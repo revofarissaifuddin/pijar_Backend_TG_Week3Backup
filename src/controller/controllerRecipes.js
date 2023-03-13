@@ -21,11 +21,11 @@ const RecipesController = {
         try {
             // const id = req.params.id;
             const result = await getRecipesByIdRecipes();
-            const getDataId = result.rows[0];
-            if(getDataId.length < 1){
+            // const getDataId = result.rows[0];
+            if(result.length < 1){
                 res.status(404).json({status:404,message:"get data failed"});
             }
-            res.status(200).json({status:200,message:"get data success ",data:getDataId.rows});
+            res.status(200).json({status:200,message:"get data success ",data:result.rows});
         } catch (error) {
             res.status(404).json({status:404,message:"Error request get all data failed"});
             next(error);
