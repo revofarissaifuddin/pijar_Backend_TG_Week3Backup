@@ -31,7 +31,7 @@ const RecipesController = {
         }
     },
     // show data recipes by id
-    getRecipesById: async (req, res, next) => {
+/*     getRecipesById: async (req, res, next) => {
         try {
             const id = req.params.id;
             const cekId = await getRecipesById(id);
@@ -44,7 +44,7 @@ const RecipesController = {
             res.status(404).json({status:404,message:"Error request get data not found"});
             next(error);
         }
-    },
+    }, */
     // show data delete recipes by id
     getDeletedRecipesById: async (req, res, next) => {
         try {
