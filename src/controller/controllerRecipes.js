@@ -34,7 +34,7 @@ const RecipesController = {
     getRecipesId: async (req, res, next) => {
         try {
             const id = req.params.id;
-            const result = await getRecipesById("id",id);
+            const result = await getRecipesById(id);
             if (!result) {
                 res.status(404).json({ status: 404, message: "get data failed" });
             }
