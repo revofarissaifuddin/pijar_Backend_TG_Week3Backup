@@ -12,7 +12,7 @@ const getRecipesById = (data) => {
 };
 const getRecipesByIdRecipes = () => {
     return pool.query(
-        "SELECT * FROM recipes WHERE id=21"
+        "SELECT * FROM recipes WHERE id=3"
     );
 };
 const getRecipesByIdUsers = (data) => {
