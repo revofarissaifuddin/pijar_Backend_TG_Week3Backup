@@ -16,6 +16,21 @@ const RecipesController = {
             next(error);
         }
     },
+    //show data recipes by idrecipe
+    getRecipesByIdRecipe: async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            const result = await getRecipesById(id);
+            const getDataId = result.rows[0];
+            if(!getDataId){
+                res.status(404).json({status:404,message:"get data failed"});
+            }
+            res.status(200).json({status:200,message:"get data success ",data:getDataId.rows});
+        } catch (error) {
+            res.status(404).json({status:404,message:"Error request get all data failed"});
+            next(error);
+        }
+    },
     // show data recipes by idusers
     getRecipesByIdUsers: async (req, res, next) => {
         try {
