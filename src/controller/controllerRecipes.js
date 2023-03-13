@@ -17,6 +17,21 @@ const RecipesController = {
         }
     },
     // show data recipes by id
+    getRecipesByIdCol: async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            const cekId = await getRecipesById(id);
+            const veryId = cekId.rows[0];
+            if (!veryId) {
+                res.status(404).json({ status: 404, message: "get data failed" });
+            }
+            res.status(200).json({ status: 200, message: "get data success ", data: veryId.rows });
+        } catch (error) {
+            res.status(404).json({status:404,message:"Error request get data not found"});
+            next(error);
+        }
+    },
+    // show data recipes by id
     getRecipesByIdUsers: async (req, res, next) => {
         try {
             const data = req.payload.id;
@@ -30,21 +45,6 @@ const RecipesController = {
             next(error);
         }
     },
-    // show data recipes by id
-/*     getRecipesById: async (req, res, next) => {
-        try {
-            const id = req.params.id;
-            const cekId = await getRecipesById(id);
-            const veryId = cekId.rows[0];
-            if (!veryId) {
-                res.status(404).json({ status: 404, message: "get data failed" });
-            }
-            res.status(200).json({ status: 200, message: "get data success ", data: veryId.rows });
-        } catch (error) {
-            res.status(404).json({status:404,message:"Error request get data not found"});
-            next(error);
-        }
-    }, */
     // show data delete recipes by id
     getDeletedRecipesById: async (req, res, next) => {
         try {
