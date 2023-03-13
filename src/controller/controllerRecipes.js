@@ -21,7 +21,7 @@ const RecipesController = {
         try {
             const id = req.params.id;
             const result = await getRecipesById(id);
-            const getDataId = result.rows[0];
+            const getDataId = [];
             if(getDataId.length < 1){
                 res.status(404).json({status:404,message:"get data failed"});
             }
