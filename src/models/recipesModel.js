@@ -7,7 +7,12 @@ const getDataRecipes = () => {
 };
 const getRecipesById = (data) => {
     return pool.query(
-        `SELECT * FROM recipes WHERE recipes.deleted_at = NULL AND id=${data}`
+        `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
+    );
+};
+const getRecipesByIdRecipes = (data) => {
+    return pool.query(
+        `SELECT * FROM recipes WHERE id=${data}`
     );
 };
 const getRecipesByIdUsers = (data) => {
@@ -69,6 +74,7 @@ const findUser = (email) => {
 module.exports = {
     getDataRecipes,
     getRecipesById,
+    getRecipesByIdRecipes,
     getRecipesDeletedByIdUsers,
     insertData,
     updateDataById,
