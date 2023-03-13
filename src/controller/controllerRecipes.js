@@ -1,4 +1,4 @@
-const { getDataRecipes,getRecipesById, getRecipesByIdUsers,getRecipesDeletedByIdUsers, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
+const { getDataRecipes,getDataById, getRecipesByIdUsers,getRecipesDeletedByIdUsers, insertData, updateDataById, deleteDataById, searchDataRecipes } = require("../models/recipesModel");
 const cloudinary = require("../config/photo");
 const path = require("path");// eslint-disable-line no-unused-vars
 const RecipesController = {
@@ -17,10 +17,10 @@ const RecipesController = {
         }
     },
     // show data recipes by id
-    getRecipesByIdCol: async (req, res, next) => {
+    getDataRecipesById: async (req, res, next) => {
         try {
             const id = req.params.id;
-            const cekId = await getRecipesById(id);
+            const cekId = await getDataById(id);
             const veryId = cekId.rows[0];
             if (!veryId) {
                 res.status(404).json({ status: 404, message: "get data failed" });
