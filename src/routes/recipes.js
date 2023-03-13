@@ -8,7 +8,7 @@ router.post("/", protect, upload.single("photo"), inputRecipes);
 router.get("/", protect, getRecipes);
 router.get("/public", getRecipes);
 router.get("/my-recipe", protect, getRecipesByIdUsers);
-router.get("/my-recipe/:id", protect, getRecipesId);
+router.get("/recipe/:id", protect, getRecipesId);
 router.get("/my-recipe/deleted", protect, getDeletedRecipesById);
 router.get("/all-recipe", getSearchRecipes);
 router.put("/my-recipe/:id", protect, upload.single("photo"), putRecipesById);
