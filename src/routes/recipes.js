@@ -5,7 +5,6 @@ const {protect} = require("../middleware/auth");
 const upload = require("../middleware/uploadPhoto");
 
 router.get("/public", getRecipes);
-
 router.post("/", protect, upload.single("photo"), inputRecipes);
 router.get("/", protect, getRecipes);
 router.get("/my-recipe", protect, getRecipesByIdUsers);

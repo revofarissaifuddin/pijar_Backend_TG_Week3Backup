@@ -16,7 +16,7 @@ const RecipesController = {
             next(error);
         }
     },
-    // show data recipes by id
+    // show data recipes by idusers
     getRecipesByIdUsers: async (req, res, next) => {
         try {
             const data = req.payload.id;
