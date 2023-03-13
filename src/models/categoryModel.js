@@ -5,7 +5,7 @@ const selectDataCategory = () => {
 };
 
 const getDataById = (data) => {
-    return pool.query(`SELECT * FROM category WHERE id=${data}`);
+    return pool.query(`SELECT * FROM category WHERE category.id=${data}`);
 };
 
 const insertData = (data) => {
