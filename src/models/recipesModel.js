@@ -2,7 +2,7 @@ const pool = require("../config/db");
 
 const getDataRecipes = () => {
     return pool.query(
-        "SELECT * FROM recipes"
+        "SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=3"
     );
 };
 const getRecipesById = (data) => {
