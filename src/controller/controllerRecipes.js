@@ -22,10 +22,10 @@ const RecipesController = {
             const id = req.params.id;
             const cekId = await getRecipesById(id);
             const veryId = cekId.rows[0];
-            if (!veryId) {
-                res.status(404).json({ status: 404, message: "get data failed" });
+            if (veryId) {
+                res.status(200).json({ status: 200, message: "get data success ", data: veryId.rows });
             }
-            res.status(200).json({ status: 200, message: "get data success ", data: veryId.rows });
+            res.status(404).json({ status: 404, message: "get data failed" });
         } catch (error) {
             res.status(404).json({status:404,message:"Error request get data not found"});
             next(error);
@@ -40,21 +40,6 @@ const RecipesController = {
                 res.status(404).json({ status: 404, message: "get data failed" });
             }
             res.status(200).json({ status: 200, message: "get data success ", data: result.rows });
-        } catch (error) {
-            res.status(404).json({status:404,message:"Error request get data not found"});
-            next(error);
-        }
-    },
-    // show data delete recipes by id
-    getDeletedRecipesById: async (req, res, next) => {
-        try {
-            const data = req.payload.id;
-            const deletedResult = await getRecipesDeletedByIdUsers(data);
-            if (!deletedResult) {
-                res.status(404).json({ status: 404, message: "get data failed" });
-            }
-            res.status(200).json({ status: 200, message: "get data success ", data: deletedResult.rows });
-            
         } catch (error) {
             res.status(404).json({status:404,message:"Error request get data not found"});
             next(error);
@@ -87,6 +72,7 @@ const RecipesController = {
             next(error);
         }
     },
+    
     //update data user
     putRecipesById: async (req, res, next) => {
         try {
@@ -120,7 +106,21 @@ const RecipesController = {
             next(error);
         }
     },
-    
+    // show data delete recipes by id
+    getDeletedRecipesById: async (req, res, next) => {
+        try {
+            const data = req.payload.id;
+            const deletedResult = await getRecipesDeletedByIdUsers(data);
+            if (!deletedResult) {
+                res.status(404).json({ status: 404, message: "get data failed" });
+            }
+            res.status(200).json({ status: 200, message: "get data success ", data: deletedResult.rows });
+            
+        } catch (error) {
+            res.status(404).json({status:404,message:"Error request get data not found"});
+            next(error);
+        }
+    },
     
     //remove data recipes
     removeRecipesById: async (req, res, next) => {
