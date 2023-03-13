@@ -11,7 +11,11 @@ const getRecipesByIdUsers = (data) => {
         `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NULL AND users_id='${data}' ORDER BY id DESC`
     );
 };
-
+const getRecipesDeletedByIdUsers = (data) => {
+    return pool.query(
+        `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NOT NULL AND users_id='${data}' ORDER BY id DESC`
+    );
+};
 const insertData = (data) => {
     let { descriptions, title, photo, users_id, category_id } = data;
     let time = new Date().toISOString();
@@ -67,6 +71,7 @@ const findUser = (email) => {
 module.exports = {
     getDataRecipes,
     getRecipesById,
+    getRecipesDeletedByIdUsers,
     insertData,
     updateDataById,
     deleteDataById,
