@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { getRecipes,getDataRecipesById,getRecipesByIdUsers,getDeletedRecipesById,inputRecipes,putRecipesById,removeRecipesById,getSearchRecipes } = require("../controller/controllerRecipes");
+const { getRecipes, getRecipesByIdUsers,getDeletedRecipesById,inputRecipes,putRecipesById,removeRecipesById,getSearchRecipes } = require("../controller/controllerRecipes");
 const {protect} = require("../middleware/auth");
 const upload = require("../middleware/uploadPhoto");
 
 router.get("/public", getRecipes);
-router.get("/coba/:id", protect, getDataRecipesById);
 
 router.post("/", protect, upload.single("photo"), inputRecipes);
 router.get("/", protect, getRecipes);
