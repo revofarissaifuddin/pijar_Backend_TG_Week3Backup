@@ -6,19 +6,14 @@ const getDataRecipes = () => {
     );
 };
 
-const getRecipesById = (data) => {
-    return pool.query(
-        `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
-    );
-};
-const getDataRecipesById = (data) => {
-    return pool.query(
-        `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NULL AND id='${data}' ORDER BY id DESC`
-    );
-};
 const getRecipesByIdUsers = (data) => {
     return pool.query(
         `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NULL AND users_id='${data}' ORDER BY id DESC`
+    );
+};
+const getRecipesDeletedByIdUsers = (data) => {
+    return pool.query(
+        `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NOT NULL AND users_id='${data}' ORDER BY id DESC`
     );
 };
 
@@ -37,10 +32,9 @@ const updateDataById = (id,data) => {
     );
 };
 
-
-const getRecipesDeletedByIdUsers = (data) => {
+const getRecipesById = (data) => {
     return pool.query(
-        `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NOT NULL AND users_id='${data}' ORDER BY id DESC`
+        `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
     );
 };
 
@@ -57,11 +51,11 @@ const searchDataRecipes = (data) => {
     );
 };
 
-/* const getData = () => {
+const getData = () => {
     return pool.query(
         "SELECT recipes.title,recipes.descriptions,recipes.created_at as posttime, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id  WHERE recipes.deleted_at IS NULL"
     );
-}; */
+};
 
 const findUser = (email) => {
     return new Promise((resolve, reject) =>
@@ -78,11 +72,11 @@ const findUser = (email) => {
 module.exports = {
     getDataRecipes,
     getRecipesById,
-    getDataRecipesById,
     insertData,
     updateDataById,
     deleteDataById,
     searchDataRecipes,
+    getData,
     findUser,
     getRecipesByIdUsers,
     getRecipesDeletedByIdUsers,

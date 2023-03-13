@@ -5,7 +5,7 @@ const {protect} = require("../middleware/auth");
 const upload = require("../middleware/uploadPhoto");
 
 router.get("/public", getRecipes);
-router.get("/:id", protect, getDataRecipesById);
+router.get("/coba/:id", protect, getDataRecipesById);
 
 router.post("/", protect, upload.single("photo"), inputRecipes);
 router.get("/", protect, getRecipes);
