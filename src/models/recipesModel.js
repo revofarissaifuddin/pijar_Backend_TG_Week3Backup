@@ -2,7 +2,7 @@ const pool = require("../config/db");
 
 const getDataRecipes = () => {
     return pool.query(
-        "SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=3"
+        "SELECT * FROM recipes WHERE recipes.deleted_at IS NULL ORDER BY created_at DESC"
     );
 };
 const getRecipesById = (data) => {
@@ -10,9 +10,9 @@ const getRecipesById = (data) => {
         `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
     );
 };
-const getRecipesByIdRecipes = () => {
+const getRecipesByIdRecipes = (data) => {
     return pool.query(
-        "SELECT * FROM recipes"
+        `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND recipes.id=${data}`
     );
 };
 const getRecipesByIdUsers = (data) => {

@@ -19,7 +19,7 @@ const RecipesController = {
     //show data recipes by idrecipe
     getRecipesByIdRecipe: async (req, res, next) => {
         try {
-            const result = await getDataRecipes();
+            const result = await getRecipesByIdRecipes(3);
             if(!result){
                 res.status(404).json({status:404,message:"get data failed"});
             }
