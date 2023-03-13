@@ -31,14 +31,15 @@ const RecipesController = {
         }
     },
     // show data recipes by id
-    getRecipesId: async (req, res, next) => {
+    getRecipesById: async (req, res, next) => {
         try {
             const id = req.params.id;
-            const result = await getRecipesById(id);
-            if (!result) {
+            const cekId = await getRecipesById(id);
+            const veryId = cekId.rows[0];
+            if (!veryId) {
                 res.status(404).json({ status: 404, message: "get data failed" });
             }
-            res.status(200).json({ status: 200, message: "get data success ", data: result.rows });
+            res.status(200).json({ status: 200, message: "get data success ", data: veryId.rows });
         } catch (error) {
             res.status(404).json({status:404,message:"Error request get data not found"});
             next(error);
