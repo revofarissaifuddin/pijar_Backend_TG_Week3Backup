@@ -10,9 +10,9 @@ const getRecipesById = (data) => {
         `SELECT * FROM recipes WHERE recipes.deleted_at IS NULL AND id=${data}`
     );
 };
-const getRecipesByIdRecipes = (id=21) => {
+const getRecipesByIdRecipes = () => {
     return pool.query(
-        `SELECT * FROM recipes WHERE id=${id}`
+        "SELECT * FROM recipes WHERE id=21"
     );
 };
 const getRecipesByIdUsers = (data) => {
