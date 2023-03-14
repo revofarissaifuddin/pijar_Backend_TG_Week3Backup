@@ -62,7 +62,7 @@ Built Rest API with:
 To deploy this project with cyclic
 
 ```bash
-  https://fair-lime-salamander-boot.cyclic.app(plus root api)
+  URL-Server(plus root api)
 ```
 ## Authors
 
