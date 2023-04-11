@@ -5,7 +5,6 @@ const { generateToken , refreshGenerateToken} = require("../helpers/generateToke
 const email = require("../middleware/email");
 
 const UsersController = {
-    
     //function post/add/register data users
     registerUser: async (req, res) => {
         // cek users
