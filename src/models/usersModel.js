@@ -90,7 +90,7 @@ const insertOTP = (email, otp) => {
 };
 const sendOTP = (email, otp) => {
     return new Promise((resolve, reject) =>
-        Pool.query(
+        pool.query(
             `SELECT * FROM users WHERE email = '${email}' AND otp = '${otp}'`,
             (err, result) => {
                 if (!err) {
@@ -105,7 +105,7 @@ const sendOTP = (email, otp) => {
 
 const changePassword = (email, password) => {
     return new Promise((resolve, reject) =>
-        Pool.query(
+        pool.query(
             `UPDATE users SET password = '${password}' WHERE email = '${email}'`,
             (err, result) => {
                 if (!err) {
