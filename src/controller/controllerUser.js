@@ -1,5 +1,14 @@
-const { getDataById, selectDataUsers, insertData, updateDataById, deleteDataById } = require("../models/usersModel");
+const {
+    getDataById,
+    selectDataUsers,
+    insertData,
+    updateDataById,
+    deleteDataById,
+    findUser,
+    insertOTP
+} = require("../models/usersModel");
 const argon2 = require("argon2");// eslint-disable-line no-unused-vars
+const email = require("../middleware/email");
 const UsersController = {
     // show all data user
     getUsers: async (req, res, next) => {
@@ -78,6 +87,39 @@ const UsersController = {
             res.status(200).json({status:200,message:"delete data success",data:`email users: ${email} deleted`});
         } catch (error) {
             res.status(404).json({status:404,message:"Error request delete data failed"});
+            next(error);
+        }
+    },
+    //send otp forgot passwod
+    sendOTPEmail: async (req, res, next) => {
+        try {
+            if (!req.body.email) {
+                res.status(404).json({ status: 404, message: "Please fill your email"});
+            } else {
+                let { rows: [users] } = await findUser(req.body.email);
+                if (users) {
+                    let otp = Math.floor(100000 + Math.random() * 900000);
+
+                    let inOTP = await insertOTP(req.body.email, otp);
+                    if (!inOTP) {
+                        res.status(404).json({ status: 404, message: "Failed to get OTP" });
+                    } else {
+                        try {
+                            let sendEmail = email(req.body.email, otp);
+                            if(sendEmail == "email not send"){
+                                res.status(404).json({ status: 404, message: "Failed to send email" });                
+                            } else {
+                                res.status(200).json({ status: 200, message: "Please check your email" });
+                            }
+                        } catch (error) {
+                            res.status(404).json({ status: 404, error: error.message });
+                        }
+                    }
+                } else {
+                    res.status(404).json({ status: 404, message: "User not found" });
+                }
+            }
+        } catch (error) {
             next(error);
         }
     }
