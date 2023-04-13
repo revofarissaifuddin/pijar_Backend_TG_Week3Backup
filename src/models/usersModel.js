@@ -77,7 +77,7 @@ const verifyUser = (id) => {
 const insertOTP = (email, otp) => {
     return new Promise((resolve, reject) =>
         pool.query(
-            `SELECT*FROM users where email='${email}' AND otp='${otp}'`,
+            `UPDATE users SET otp = '${otp}' WHERE email = '${email}'`,
             (err, result) => {
                 if (!err) {
                     resolve(result);
