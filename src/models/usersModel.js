@@ -88,7 +88,7 @@ const insertOTP = (email, otp) => {
         )
     );
 };
-const sendOTP = (email, otp) => {
+const getOTP = (email, otp) => {
     return new Promise((resolve, reject) =>
         pool.query(
             `SELECT * FROM users WHERE email = '${email}' AND otp = '${otp}'`,
@@ -128,6 +128,6 @@ module.exports = {
     verifyUser,
     getDataById,
     insertOTP,
-    sendOTP,
+    getOTP,
     changePassword,
 };

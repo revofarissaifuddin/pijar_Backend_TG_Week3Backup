@@ -5,7 +5,9 @@ const {
     updateDataById,
     deleteDataById,
     findUser,
-    insertOTP
+    insertOTP,
+    getOTP,
+    changePassword
 } = require("../models/usersModel");
 const argon2 = require("argon2");// eslint-disable-line no-unused-vars
 const email = require("../middleware/email");
@@ -117,6 +119,40 @@ const UsersController = {
                     }
                 } else {
                     res.status(404).json({ status: 404, message: "User not found" });
+                }
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    verifyChangePassword: async (req,res,next)=>{
+        try {
+            if (!req.body.email || !req.body.otp) {
+                res.status(404).json({ status: 404, message: "Please fill your email and OTP" });
+            } else {
+                let findEmail = await getOTP(req.body.email, req.body.otp);
+                if (!findEmail.rows[0]) {
+                    res.status(404).json({ status: 404, message: "Your email or OTP wrong" });
+                } else {
+                    res.status(200).json({ status: 200, message: "Confirm success", data: findEmail.rows });
+                }
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    resetPassword: async (req,res,next)=>{
+        try {
+            if (!req.body.password || !req.body.email) {
+                res.status(404).json({ status: 404, message: "Please fill all column" });
+            }else {
+                let password = await argon2.hash(req.body.password);
+                let reset = await changePassword(req.body.email, password);
+
+                if (!reset) {
+                    res.status(404).json({ status: 404, message: "Reset password failed" });
+                } else {
+                    res.status(200).json({ status: 200, message: "Reset password success" });
                 }
             }
         } catch (error) {
