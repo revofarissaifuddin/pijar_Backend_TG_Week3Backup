@@ -62,13 +62,30 @@ const RecipesController = {
     
     //post data atau add data recipes
     inputRecipes: async (req, res, next) => {
+        const notifications = {
+            method: "POST",
+            headers: {
+                accept: "application/json",
+                Authorization: `Basic ${process.env.API_KEY_ONESIGNAL}`,
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({
+                included_segments: ["Subscribed Users"],
+                contents: {en: "Add New Recipes!"},
+                // eslint-disable-next-line no-undef
+                name: `New Posted ${title}`,
+            }),
+        };
+
+        fetch("https://onesignal.com/api/v1/notifications", notifications)
+            .then((response) => response.json())
+            .then((response) => console.log(response))
+            .catch((err) => console.error(err));
         try {
             const imageUrl = await cloudinary.uploader.upload(req.file.path, { folder: "food" });
-            // console.log('imageUrl', imageUrl)
             if (!imageUrl) {
                 res.status(404).json({status:404,message:"input data failed, failed to upload photo"});
             }
-
             const data = {};
             data.title = req.body.title;
             data.photo = imageUrl.secure_url;
@@ -80,7 +97,7 @@ const RecipesController = {
             if (!result) {
                 return res.status(404).json({ status: 404, message: "Error input data failed" });
             }
-            return res.status(201).json({ status: 200, message: "input data success", data:data});
+            return res.status(201).json({ status: 200, message: "input data success", data:data}),notifications(req.body.title);
         } catch (error) {
             res.status(404).json({ status: 404, message: "Error request input data recipes failed"});
             next(error);

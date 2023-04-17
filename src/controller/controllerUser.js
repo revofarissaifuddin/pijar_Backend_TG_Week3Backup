@@ -148,7 +148,6 @@ const UsersController = {
             }else {
                 let password = await argon2.hash(req.body.password);
                 let reset = await changePassword(req.body.email, password);
-
                 if (!reset) {
                     res.status(404).json({ status: 404, message: "Reset password failed" });
                 } else {
