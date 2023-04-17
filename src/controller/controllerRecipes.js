@@ -73,7 +73,7 @@ const RecipesController = {
                 included_segments: ["Subscribed Users"],
                 contents: {en: "Add New Recipes!"},
                 // eslint-disable-next-line no-undef
-                name: `New Posted ${title}`,
+                name: `New Posted ${req.body.title}`,
             }),
         };
 
@@ -97,7 +97,7 @@ const RecipesController = {
             if (!result) {
                 return res.status(404).json({ status: 404, message: "Error input data failed" });
             }
-            return res.status(201).json({ status: 200, message: "input data success", data:data}),notifications(req.body.title);
+            return res.status(201).json({ status: 200, message: "input data success", data:data}),notifications();
         } catch (error) {
             res.status(404).json({ status: 404, message: "Error request input data recipes failed"});
             next(error);
