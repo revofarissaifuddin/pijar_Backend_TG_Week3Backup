@@ -47,9 +47,9 @@ const deleteDataById = (id) => {
 
 
 const searchDataRecipes = (data) => {
-    let { searchBy, search, sortBy, sort, limit, page } = data;
+    let { searchBy, search, sortBy, sort, limit, offset } = data;
     return pool.query(
-        `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, recipes.deleted_at, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id WHERE recipes.deleted_at IS NULL AND recipes.${searchBy} ILIKE '${search}%' ORDER BY recipes.${sortBy} ${sort} LIMIT ${limit} OFFSET ${page} ROWS `
+      `SELECT recipes.id,recipes.title,recipes.descriptions,recipes.created_at as posttime, recipes.deleted_at, category.name as category, recipes.photo, users.fullname as creator, users.email FROM recipes JOIN category ON recipes.category_id=category.id JOIN users ON recipes.users_id=users.id WHERE recipes.deleted_at IS NULL AND recipes.${searchBy} ILIKE '${search}%' ORDER BY recipes.${sortBy} ${sort} LIMIT ${limit} OFFSET ${offset}`
     );
 };
 

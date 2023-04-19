@@ -161,16 +161,17 @@ const RecipesController = {
 
     getSearchRecipes: async (req, res, next) => {
         try {
-            const { searchBy, search, sortBy, sort, limit, page } = req.query;
+            const { searchBy, search, sortBy, sort } = req.query;
             const data = {
                 searchBy: searchBy || "title",
                 search: search || "",
                 sortBy: sortBy || "created_at",
                 sort: sort || "ASC",
-                limit: limit || "",
-                page: (page-1)*limit || "",
             };
-    
+            data.page = Number(req.query.page) || 1;
+            data.limit = Number(req.query.limit) || 5;
+            data.offset = (data.page - 1) * data.limit;
+  
             const result = await searchDataRecipes(data);
             if(!result){
                 res.status(404).json({ status: 404, message: "Error data not found" });
