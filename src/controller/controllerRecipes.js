@@ -81,6 +81,7 @@ const RecipesController = {
                 .then((response) => response.json())
                 .then((response) => console.log(response))
                 .catch((err) => console.error(err));
+            
             const imageUrl = await cloudinary.uploader.upload(req.file.path, { folder: "food" });
             if (!imageUrl) {
                 res.status(404).json({status:404,message:"input data failed, failed to upload photo"});
@@ -96,7 +97,7 @@ const RecipesController = {
             if (!result) {
                 return res.status(404).json({ status: 404, message: "Error input data failed" });
             }
-            return res.status(201).json({ status: 200, message: "input data success", data:data}),notifications;
+            return (res.status(201).json({ status: 200, message: "input data success", data:data}),notifications);
         } catch (error) {
             res.status(404).json({ status: 404, message: "Error request input data recipes failed"});
             next(error);
@@ -166,8 +167,8 @@ const RecipesController = {
                 search: search || "",
                 sortBy: sortBy || "created_at",
                 sort: sort || "ASC",
-                limit: limit || 10,
-                page: page || 0,
+                limit: limit || "",
+                page: (page-1)*limit || "",
             };
     
             const result = await searchDataRecipes(data);
